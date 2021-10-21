@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/com/github/brain-child/moobo">
+    <file compressed="true">styles/Style.css</file>
+    <file compressed="true">styles/SourceRow.css</file>
+    <file compressed="true">styles/ColorButton.css</file>
+  </gresource>
+</gresources>

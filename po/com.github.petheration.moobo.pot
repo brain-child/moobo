@@ -1,0 +1,129 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.github.brain-child.moobo package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: com.github.brain-child.moobo\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-10-14 21:11+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/Window.vala:57
+msgid "New Board"
+msgstr ""
+
+#: src/Window.vala:72
+msgid "Boards"
+msgstr ""
+
+#: src/Movable.vala:64
+msgid "Change Color"
+msgstr ""
+
+#: src/Movable.vala:97
+msgid "Scale"
+msgstr ""
+
+#: src/Movable.vala:120 src/Controllers/RowController.vala:127
+msgid "Delete"
+msgstr ""
+
+#: src/Widgets/FloatingButton.vala:33
+msgid "Text"
+msgstr ""
+
+#: src/Widgets/FloatingButton.vala:34
+msgid "Label"
+msgstr ""
+
+#: src/Widgets/FloatingButton.vala:35
+msgid "Image"
+msgstr ""
+
+#: src/Controllers/RowController.vala:120
+#, c-format
+msgid "Do you want to delete \"%s\"?"
+msgstr ""
+
+#: src/Controllers/RowController.vala:121
+msgid ""
+"The content of this board will be deleted completely and cannot be restored."
+msgstr ""
+
+#: src/Helper/DemoBoard.vala:3
+msgid "Widget selection"
+msgstr ""
+
+#: src/Helper/DemoBoard.vala:4
+msgid "Double click anywhere to add a widget"
+msgstr ""
+
+#: src/Helper/DemoBoard.vala:5
+msgid ""
+"Change font size: ctrl +/-\n"
+"save and close app: ctrl q/w"
+msgstr ""
+
+#: src/Helper/DemoBoard.vala:6
+msgid ""
+"Right click on widget for\n"
+"context menu.\n"
+"(when 'grabbing cursor' appears)"
+msgstr ""
+
+#: src/Helper/DemoBoard.vala:7
+msgid "Create new board"
+msgstr ""
+
+#: src/Helper/DemoBoard.vala:8
+msgid "Right click to edit"
+msgstr ""
+
+#: data/moobo.desktop.in:3 data/moobo.appdata.xml.in:6
+msgid "Moobo"
+msgstr ""
+
+#: data/moobo.desktop.in:4
+msgid "Moodboard Application"
+msgstr ""
+
+#: data/moobo.desktop.in:5
+msgid "Visualize your ideas"
+msgstr ""
+
+#: data/moobo.desktop.in:8
+msgid "com.github.brain-child.moobo"
+msgstr ""
+
+#: data/moobo.desktop.in:11
+msgid "notes;moobo;moodboard;idea;"
+msgstr ""
+
+#: data/moobo.appdata.xml.in:7
+msgid "Visualize your ideas on moodboards"
+msgstr ""
+
+#: data/moobo.appdata.xml.in:10
+msgid ""
+"Collect your ideas; visualize them on different moodboards. Use different "
+"kinds of widgets. Drag, stack, scale and color them."
+msgstr ""
+
+#: data/moobo.appdata.xml.in:13
+msgid ""
+"⚠ NOTE: The potential of this app has not yet been reached. At the moment, "
+"it is considered a proof of conecpt."
+msgstr ""
+
+#: data/moobo.appdata.xml.in:22
+msgid "Pierre Fabarius"
+msgstr ""

@@ -1,0 +1,32 @@
+.fab {
+    background: #3689e6;
+    border-radius: 50%;
+}
+
+.white_label {
+    color: #fafafa;
+}
+
+.black_label {
+    color: black;
+}
+
+.note {
+    background: #fff394;
+}
+
+.rounded_corners {
+    border-radius: 5px;
+}
+
+.transparent {
+    background: transparent;
+}
+
+.editable-label {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: inherit;
+    padding: 0;
+}

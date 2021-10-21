@@ -1,0 +1,9 @@
+src/Application.vala
+src/Window.vala
+src/Movable.vala
+src/Widgets/FloatingButton.vala
+src/Controllers/RowController.vala
+src/Helper/DemoBoard.vala
+
+data/moobo.desktop.in
+data/moobo.appdata.xml.in

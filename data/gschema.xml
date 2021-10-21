@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema path="/com/github/brain-child/moobo/" id="com.github.brain-child.moobo">
+    <key name="win-x" type="i">
+        <default>100</default>
+        <summary>x-position</summary>
+        <description>window position on x axis</description>
+    </key>
+    <key name="win-y" type="i">
+        <default>100</default>
+        <summary>y-position</summary>
+        <description>window position on y axis</description>
+    </key>
+    <key name="win-width" type="i">
+        <default>1200</default>
+        <summary>window width</summary>
+        <description>width of the window</description>
+    </key>
+    <key name="win-height" type="i">
+        <default>800</default>
+        <summary>window height</summary>
+        <description>width of the window</description>
+    </key>
+  </schema>
+</schemalist>
