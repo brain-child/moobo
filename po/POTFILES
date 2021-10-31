@@ -2,6 +2,7 @@ src/Application.vala
 src/Window.vala
 src/Movable.vala
 src/Widgets/FloatingButton.vala
+src/Widgets/Row.vala
 src/Controllers/RowController.vala
 src/Helper/DemoBoard.vala
 

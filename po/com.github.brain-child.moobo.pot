@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.brain-child.moobo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-14 21:11+0200\n"
+"POT-Creation-Date: 2021-10-31 12:02+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,15 +25,15 @@ msgstr ""
 msgid "Boards"
 msgstr ""
 
-#: src/Movable.vala:64
+#: src/Movable.vala:67
 msgid "Change Color"
 msgstr ""
 
-#: src/Movable.vala:97
+#: src/Movable.vala:100
 msgid "Scale"
 msgstr ""
 
-#: src/Movable.vala:120 src/Controllers/RowController.vala:127
+#: src/Movable.vala:125 src/Controllers/RowController.vala:127
 msgid "Delete"
 msgstr ""
 
@@ -47,6 +47,10 @@ msgstr ""
 
 #: src/Widgets/FloatingButton.vala:35
 msgid "Image"
+msgstr ""
+
+#: src/Widgets/Row.vala:74
+msgid "Rename"
 msgstr ""
 
 #: src/Controllers/RowController.vala:120
@@ -114,16 +118,16 @@ msgstr ""
 
 #: data/moobo.appdata.xml.in:10
 msgid ""
-"Collect your ideas; visualize them on different moodboards. Use different "
-"kinds of widgets. Drag, stack, scale and color them."
+"Take your ideas; visualize them on different moodboards. Use different kinds "
+"of widgets. Drag, stack, scale and color them."
 msgstr ""
 
 #: data/moobo.appdata.xml.in:13
 msgid ""
-"⚠ NOTE: The potential of this app has not yet been reached. At the moment, "
-"it is considered a proof of conecpt."
+"⚠ NOTE: The potential of this app has not yet been reached. At the moment, I "
+"consider the program as proof of concept. Unexpected behavior may occur."
 msgstr ""
 
 #: data/moobo.appdata.xml.in:22
-msgid "Pierre Fabarius"
+msgid "brain·​child"
 msgstr ""

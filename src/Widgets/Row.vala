@@ -12,7 +12,7 @@ public class Row : Gtk.ListBoxRow {
     public Gtk.Image delete_button { private set; get; }
     public Gtk.Menu menu { private set; get; }
     public Gtk.MenuItem rename_item { private set; get; }
-    public MenuItemColor menu_item { private set; get; } 
+    public MenuItemColor menu_item { private set; get; }
 
     private BoardController board_controller;
     private Gtk.CssProvider listrow_provider;
@@ -71,10 +71,10 @@ public class Row : Gtk.ListBoxRow {
     }
 
     private void create_menu () {
-        rename_item = new Gtk.MenuItem.with_label ("Rename");
+        rename_item = new Gtk.MenuItem.with_label (_("Rename"));
         menu_item = new MenuItemColor ();
         menu_item.check_color (Colors.from_name_to_index (color));
-        
+
         menu = new Gtk.Menu ();
         menu.add (rename_item);
         menu.add (new Gtk.SeparatorMenuItem ());
