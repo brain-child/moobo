@@ -29,15 +29,12 @@ public class ImageController {
 
     public string get_file () {
         string file_path = "";
-        var file_chooser = new Gtk.FileChooserDialog (
+        var file_chooser = new Gtk.FileChooserNative (
             "Open File",
             null,
             Gtk.FileChooserAction.OPEN,
-            "Cancel",
-            Gtk.ResponseType.CANCEL,
-            "OK",
-            Gtk.ResponseType.ACCEPT,
-            null
+            "Open",
+            "Cancel"
         );
         var filter = new Gtk.FileFilter ();
         filter.add_mime_type ("image/*");
@@ -47,10 +44,8 @@ public class ImageController {
             var source_file = file_chooser.get_file ();
             file_path = copy_file (source_file);
         } else {
-            file_chooser.close ();
             movable.destroy ();
         }
-        file_chooser.close ();
         return file_path;
     }
 
