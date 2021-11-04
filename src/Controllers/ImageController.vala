@@ -33,8 +33,8 @@ public class ImageController {
             "Open File",
             null,
             Gtk.FileChooserAction.OPEN,
-            "Open",
-            "Cancel"
+            _("Open"),
+            _("Cancel")
         );
         var filter = new Gtk.FileFilter ();
         filter.add_mime_type ("image/*");

@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.brain-child.moobo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-31 12:02+0100\n"
+"POT-Creation-Date: 2021-11-04 20:49+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: Pierre Fabarius <pierre@fabarius.xyz>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: src/Window.vala:57
 msgid "New Board"
-msgstr ""
+msgstr "Neues Board"
 
 #: src/Window.vala:72
 msgid "Boards"
@@ -27,15 +27,15 @@ msgstr ""
 
 #: src/Movable.vala:67
 msgid "Change Color"
-msgstr ""
+msgstr "Farbe ändern"
 
 #: src/Movable.vala:100
 msgid "Scale"
-msgstr ""
+msgstr "Skalieren"
 
 #: src/Movable.vala:125 src/Controllers/RowController.vala:127
 msgid "Delete"
-msgstr ""
+msgstr "Löschen"
 
 #: src/Widgets/FloatingButton.vala:33
 msgid "Text"
@@ -47,35 +47,43 @@ msgstr ""
 
 #: src/Widgets/FloatingButton.vala:35
 msgid "Image"
-msgstr ""
+msgstr "Bild"
 
 #: src/Widgets/Row.vala:74
 msgid "Rename"
-msgstr ""
+msgstr "Umbenennen"
 
 #: src/Controllers/RowController.vala:120
 #, c-format
 msgid "Do you want to delete \"%s\"?"
-msgstr ""
+msgstr "Möchtest du \"%s\" löschen?"
 
 #: src/Controllers/RowController.vala:121
 msgid ""
 "The content of this board will be deleted completely and cannot be restored."
-msgstr ""
+msgstr "Der Inhalt des Boards wird komplett gelöscht und kann nicht wiederhergestellt werden."
+
+#: src/Controllers/ImageController.vala:36
+msgid "Open"
+msgstr "Öffnen"
+
+#: src/Controllers/ImageController.vala:37
+msgid "Cancel"
+msgstr "Abbrechen"
 
 #: src/Helper/DemoBoard.vala:3
 msgid "Widget selection"
-msgstr ""
+msgstr "Widget Auswahl"
 
 #: src/Helper/DemoBoard.vala:4
 msgid "Double click anywhere to add a widget"
-msgstr ""
+msgstr "Mach irgendwo einen doppelklick um ein Widget zu erstellen"
 
 #: src/Helper/DemoBoard.vala:5
 msgid ""
 "Change font size: ctrl +/-\n"
 "save and close app: ctrl q/w"
-msgstr ""
+msgstr "Schriftgröße ändern: strg +/-\nSpeichern und schließen: strg q/w"
 
 #: src/Helper/DemoBoard.vala:6
 msgid ""
@@ -83,14 +91,17 @@ msgid ""
 "context menu.\n"
 "(when 'grabbing cursor' appears)"
 msgstr ""
+"Rechtsklick auf einem Widget\n"
+"öffnet ein Kontextmenü.\n"
+"(wenn 'Handcursor' erscheint)"
 
 #: src/Helper/DemoBoard.vala:7
 msgid "Create new board"
-msgstr ""
+msgstr "Neues Board erstellen"
 
 #: src/Helper/DemoBoard.vala:8
 msgid "Right click to edit"
-msgstr ""
+msgstr "Rechtsklick zum ändern"
 
 #: data/moobo.desktop.in:3 data/moobo.appdata.xml.in:6
 msgid "Moobo"
@@ -98,11 +109,11 @@ msgstr ""
 
 #: data/moobo.desktop.in:4
 msgid "Moodboard Application"
-msgstr ""
+msgstr "Moodboard Applikation"
 
 #: data/moobo.desktop.in:5
 msgid "Visualize your ideas"
-msgstr ""
+msgstr "Visualisiere deine Ideen"
 
 #: data/moobo.desktop.in:8
 msgid "com.github.brain-child.moobo"
@@ -110,24 +121,32 @@ msgstr ""
 
 #: data/moobo.desktop.in:11
 msgid "notes;moobo;moodboard;idea;"
-msgstr ""
+msgstr "notizen;moobo;moodbord;idee"
 
 #: data/moobo.appdata.xml.in:7
 msgid "Visualize your ideas on moodboards"
-msgstr ""
+msgstr "Visualisiere deine Ideen auf Moodboards"
 
 #: data/moobo.appdata.xml.in:10
 msgid ""
 "Take your ideas; visualize them on different moodboards. Use different kinds "
 "of widgets. Drag, stack, scale and color them."
 msgstr ""
+"Sammle Ideen; Visualisiere sie auf verschiedenen Moodboards. Benutze "
+"verschiedene Widgets. Bewege, stapel, skaliere und färbe sie."
 
 #: data/moobo.appdata.xml.in:13
 msgid ""
 "⚠ NOTE: The potential of this app has not yet been reached. At the moment, I "
 "consider the program as proof of concept. Unexpected behavior may occur."
 msgstr ""
+"⚠ HINWEIS: Das Potential der App ist noch nicht ausgeschöpft. Im Moment wird "
+"sie als Proof of Concept betrachtet."
 
 #: data/moobo.appdata.xml.in:22
 msgid "brain·​child"
 msgstr ""
+
+#: data/moobo.appdata.xml.in:40
+msgid "First release!"
+msgstr "Erste Veröffentlichung!"

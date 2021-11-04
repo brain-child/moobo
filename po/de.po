@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.brain-child.moobo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-31 12:02+0100\n"
+"POT-Creation-Date: 2021-11-04 20:49+0100\n"
 "PO-Revision-Date: 2021-10-14 20:06+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -64,6 +64,14 @@ msgid ""
 msgstr ""
 "Der Inhalt des Boards wird komplett gelöscht und kann nicht "
 "wiederhergestellt werden."
+
+#: src/Controllers/ImageController.vala:36
+msgid "Open"
+msgstr ""
+
+#: src/Controllers/ImageController.vala:37
+msgid "Cancel"
+msgstr ""
 
 #: src/Helper/DemoBoard.vala:3
 msgid "Widget selection"
@@ -143,4 +151,8 @@ msgstr ""
 
 #: data/moobo.appdata.xml.in:22
 msgid "brain·​child"
+msgstr ""
+
+#: data/moobo.appdata.xml.in:40
+msgid "First release!"
 msgstr ""

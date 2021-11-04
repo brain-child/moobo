@@ -4,6 +4,7 @@ src/Movable.vala
 src/Widgets/FloatingButton.vala
 src/Widgets/Row.vala
 src/Controllers/RowController.vala
+src/Controllers/ImageController.vala
 src/Helper/DemoBoard.vala
 
 data/moobo.desktop.in
