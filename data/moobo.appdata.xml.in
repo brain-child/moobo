@@ -33,6 +33,16 @@
 
     <content_rating type="oars-1.1" />
 
+    <releases>
+        <release version="0.1.0" date="2021-11-04" urgency="medium">
+            <description>
+                <ul>
+                    <li>First release!</li>
+                </ul>
+            </description>
+        </release>
+    </releases>
+
     <custom>
       <value key="x-appcenter-color-primary">#3689E6</value>
       <value key="x-appcenter-color-primary-text">#FFFFFF</value>
