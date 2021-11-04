@@ -29,16 +29,15 @@ public class ImageController {
 
     public string get_file () {
         string file_path = "";
-        var file_chooser = new Gtk.FileChooserNative (
+        var file_chooser = new Gtk.FileChooserDialog (
             "Open File",
             null,
             Gtk.FileChooserAction.OPEN,
-            "Open",
-            "Cancel"
-            // Gtk.ResponseType.CANCEL,
-            // "OK",
-            // Gtk.ResponseType.ACCEPT,
-            // null
+            "Cancel",
+            Gtk.ResponseType.CANCEL,
+            "OK",
+            Gtk.ResponseType.ACCEPT,
+            null
         );
         var filter = new Gtk.FileFilter ();
         filter.add_mime_type ("image/*");
@@ -48,8 +47,10 @@ public class ImageController {
             var source_file = file_chooser.get_file ();
             file_path = copy_file (source_file);
         } else {
+            file_chooser.close ();
             movable.destroy ();
         }
+        file_chooser.close ();
         return file_path;
     }
 
