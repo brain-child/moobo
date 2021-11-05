@@ -29,7 +29,7 @@ public class Row : Gtk.ListBoxRow {
 
     construct {
         listrow_provider = new Gtk.CssProvider ();
-        listrow_provider.load_from_resource ("com/github/brain-child/moobo/styles/SourceRow.css");
+        listrow_provider.load_from_resource ("com/github/brain_child/moobo/styles/SourceRow.css");
 
         source_color = new Gtk.Grid () {
             halign = Gtk.Align.START,

@@ -4,7 +4,7 @@ public class ImageController {
     public ImageModel model { private set; get; }
 
     private BoardController board_controller;
-    private string app_dir = "%s/com.github.brain-child.moobo".printf (Environment.get_user_data_dir ());
+    private string app_dir = "%s/com.github.brain_child.moobo".printf (Environment.get_user_data_dir ());
     private int width;
     private int height;
 
@@ -14,9 +14,9 @@ public class ImageController {
         this.model = model;
 
         if (model.path == "") { model.path = get_file (); }
-        
+
         Gdk.Pixbuf.get_file_info (model.path, out width, out height);
-        
+
         if (model.path != "") {
             movable.init (model.path);
             update_widget ();
@@ -30,14 +30,15 @@ public class ImageController {
     public string get_file () {
         string file_path = "";
         var file_chooser = new Gtk.FileChooserNative (
-            "Open File",
-            null,
+            _("Open File"),
+            board_controller.window,
             Gtk.FileChooserAction.OPEN,
             _("Open"),
             _("Cancel")
         );
         var filter = new Gtk.FileFilter ();
-        filter.add_mime_type ("image/*");
+        filter.add_pixbuf_formats ();
+        file_chooser.set_transient_for (board_controller.window);
         file_chooser.filter = filter;
         var res = file_chooser.run ();
         if (res == Gtk.ResponseType.ACCEPT) {
@@ -52,10 +53,10 @@ public class ImageController {
     private void update_widget () {
         movable.rel_pos_x = movable.margin_start = model.x;
         movable.rel_pos_y = movable.margin_top = model.y;
-        
+
         var scaled_width = (int) (width * model.scale_factor);
         var scaled_height = (int) (height * model.scale_factor);
-        
+
         movable.pixbuf = movable.pixbuf.scale_simple (scaled_width, scaled_height, Gdk.InterpType.HYPER);
     }
 
@@ -79,7 +80,7 @@ public class ImageController {
             var scale_val = board_controller.board.scale.get_value ();
             var new_width = (int) (scale_val * width);
             var new_height = (int) (scale_val * height);
-            
+
             try {
                 movable.image.pixbuf = new Gdk.Pixbuf.from_file_at_size (model.path, new_width, new_height);
             } catch (Error e) {

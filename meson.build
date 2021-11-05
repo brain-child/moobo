@@ -1,5 +1,5 @@
 # project name and programming language
-project('com.github.brain-child.moobo', 'vala', 'c')
+project('com.github.brain_child.moobo', 'vala', 'c')
 
 # Include the translations module
 i18n = import('i18n')

@@ -5,9 +5,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: com.github.brain-child.moobo\n"
+"Project-Id-Version: com.github.brain_child.moobo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-04 20:49+0100\n"
+"POT-Creation-Date: 2021-11-05 18:32+0100\n"
 "PO-Revision-Date: 2021-10-14 20:06+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -65,13 +65,17 @@ msgstr ""
 "Der Inhalt des Boards wird komplett gelöscht und kann nicht "
 "wiederhergestellt werden."
 
+#: src/Controllers/ImageController.vala:33
+msgid "Open File"
+msgstr "Datei Öffnen"
+
 #: src/Controllers/ImageController.vala:36
 msgid "Open"
-msgstr ""
+msgstr "Öffnen"
 
 #: src/Controllers/ImageController.vala:37
 msgid "Cancel"
-msgstr ""
+msgstr "Abbrechen"
 
 #: src/Helper/DemoBoard.vala:3
 msgid "Widget selection"
@@ -120,7 +124,7 @@ msgid "Visualize your ideas"
 msgstr "Visualisiere deine Ideen"
 
 #: data/moobo.desktop.in:8
-msgid "com.github.brain-child.moobo"
+msgid "com.github.brain_child.moobo"
 msgstr ""
 
 #: data/moobo.desktop.in:11
