@@ -26,8 +26,10 @@
 
     <screenshots>
        <screenshot type="default">
-           <image>https://github.com/brain-child/moobo/blob/main/preview/moobo_light.png?raw=true</image>
-           <image>https://github.com/brain-child/moobo/blob/main/preview/moobo_dark.png?raw=true</image>
+           <image>https://raw.githubusercontent.com/brain-child/moobo/main/preview/moobo_light.png</image>
+       </screenshot>
+       <screenshot type="default">
+           <image>https://raw.githubusercontent.com/brain-child/moobo/main/preview/moobo_dark.png</image>
        </screenshot>
     </screenshots>
 
