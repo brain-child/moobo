@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.brain_child.moobo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-05 18:32+0100\n"
+"POT-Creation-Date: 2021-11-06 16:35+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -130,20 +130,24 @@ msgstr ""
 
 #: data/moobo.appdata.xml.in:10
 msgid ""
-"Take your ideas; visualize them on different moodboards. Use different kinds "
-"of widgets. Drag, stack, scale and color them."
+"Visualize your ideas on moodboards. Use different widgets which you can and "
+"drag, stack, scale or color."
 msgstr ""
 
 #: data/moobo.appdata.xml.in:13
 msgid ""
-"⚠ NOTE: The potential of this app has not yet been reached. At the moment, I "
-"consider the program as proof of concept. Unexpected behavior may occur."
+"⚠ NOTE: The potential of this app has not yet been reached. At the moment, "
+"the program is considered as proof of concept. Unexpected behavior may occur."
 msgstr ""
 
 #: data/moobo.appdata.xml.in:22
 msgid "brain·​child"
 msgstr ""
 
-#: data/moobo.appdata.xml.in:40
+#: data/moobo.appdata.xml.in:42
+msgid "Fix Productpage in AppCenter"
+msgstr ""
+
+#: data/moobo.appdata.xml.in:49
 msgid "First release!"
 msgstr ""
