@@ -8,10 +8,10 @@
 
     <description>
         <p>
-            Take your ideas; visualize them on different moodboards. Use different kinds of widgets. Drag, stack, scale and color them.
+            Visualize your ideas on moodboards. Use different widgets which you can and drag, stack, scale or color.
         </p>
         <p>
-            ⚠ NOTE: The potential of this app has not yet been reached. At the moment, I consider the program as proof of concept. Unexpected behavior may occur.
+            ⚠ NOTE: The potential of this app has not yet been reached. At the moment, the program is considered as proof of concept. Unexpected behavior may occur.
         </p>
     </description>
 
@@ -36,6 +36,13 @@
     <content_rating type="oars-1.1" />
 
     <releases>
+        <release version="0.1.1" date="2021-11-04" urgency="medium">
+            <description>
+                <ul>
+                    <li>Update AppCenter page and translation</li>
+                </ul>
+            </description>
+        </release>
         <release version="0.1.0" date="2021-11-04" urgency="medium">
             <description>
                 <ul>
@@ -49,6 +56,7 @@
       <value key="x-appcenter-color-primary">#3689E6</value>
       <value key="x-appcenter-color-primary-text">#FFFFFF</value>
       <value key="x-appcenter-suggested-price">1</value>
+      <value key="x-appcenter-stripe">pk_live_51Jn7RuIIljArhmepVPJdZfHeDKFox4HDQN60QFkowrkHtfNuxuM74dHrXeYU75IoYsNUGXmkZVvVz9YywwFEtQ8700QubEbk62</value>
     </custom>
 
 </component>
