@@ -39,7 +39,7 @@
         <release version="0.1.1" date="2021-11-04" urgency="medium">
             <description>
                 <ul>
-                    <li>Update AppCenter page and translation</li>
+                    <li>Fix Productpage in AppCenter</li>
                 </ul>
             </description>
         </release>
