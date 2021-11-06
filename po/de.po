@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.brain_child.moobo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-06 16:35+0100\n"
+"POT-Creation-Date: 2021-11-06 16:46+0100\n"
 "PO-Revision-Date: 2021-11-06 16:35+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -61,7 +61,9 @@ msgstr "Möchtest du \"%s\" löschen?"
 #: src/Controllers/RowController.vala:121
 msgid ""
 "The content of this board will be deleted completely and cannot be restored."
-msgstr "Der Inhalt des Boards wird komplett gelöscht und kann nicht wiederhergestellt werden."
+msgstr ""
+"Der Inhalt des Boards wird komplett gelöscht und kann nicht "
+"wiederhergestellt werden."
 
 #: src/Controllers/ImageController.vala:33
 msgid "Open File"
@@ -87,14 +89,19 @@ msgstr "Mach irgendwo einen doppelklick um ein Widget zu erstellen"
 msgid ""
 "Change font size: ctrl +/-\n"
 "save and close app: ctrl q/w"
-msgstr "Schriftgröße ändern: strg +/-\nSpeichern und schließen: strg q/w"
+msgstr ""
+"Schriftgröße ändern: strg +/-\n"
+"Speichern und schließen: strg q/w"
 
 #: src/Helper/DemoBoard.vala:6
 msgid ""
 "Right click on widget for\n"
 "context menu.\n"
 "(when 'grabbing cursor' appears)"
-msgstr "Rechtsklick auf einem Widget\nöffnet ein Kontextmenü.\n(wenn 'Handcursor' erscheint)"
+msgstr ""
+"Rechtsklick auf einem Widget\n"
+"öffnet ein Kontextmenü.\n"
+"(wenn 'Handcursor' erscheint)"
 
 #: src/Helper/DemoBoard.vala:7
 msgid "Create new board"
@@ -132,21 +139,25 @@ msgstr "Visualisiere deine Ideen auf Moodboards"
 msgid ""
 "Visualize your ideas on moodboards. Use different widgets which you can and "
 "drag, stack, scale or color."
-msgstr "Visualisiere deine Ideen auf Moodboards. Benutze verschiedene Widgets welche du bewegen, stapeln, skalieren und einfärben kannst."
+msgstr ""
+"Visualisiere deine Ideen auf Moodboards. Benutze verschiedene Widgets welche "
+"du bewegen, stapeln, skalieren und einfärben kannst."
 
 #: data/moobo.appdata.xml.in:13
 msgid ""
 "⚠ NOTE: The potential of this app has not yet been reached. At the moment, "
 "the program is considered as proof of concept. Unexpected behavior may occur."
-msgstr "⚠ HINWEIS: Das Potential der App ist noch nicht ausgeschöpft. Im Moment wird sie als Konzeptbeweis betrachtet."
+msgstr ""
+"⚠ HINWEIS: Das Potential der App ist noch nicht ausgeschöpft. Im Moment wird "
+"sie als Konzeptbeweis betrachtet."
 
 #: data/moobo.appdata.xml.in:22
 msgid "brain·​child"
 msgstr ""
 
 #: data/moobo.appdata.xml.in:42
-msgid "Fix Productpage in AppCenter"
-msgstr ""
+msgid "Fix productpage in AppCenter"
+msgstr "Fix für die Produktseite im AppCenter"
 
 #: data/moobo.appdata.xml.in:49
 msgid "First release!"
