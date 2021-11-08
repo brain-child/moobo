@@ -14,4 +14,4 @@ Use different kind of widgets. Drag, stack, scale or color them.
 
 ### Credits
 
-Moobo is developed after a concept from [hrstwn](https://github.com/hrstwn). He provided a mockup which can be found on [reddit](https://www.reddit.com/r/elementaryos/comments/kg5uiw/moobo_is_a_moodboarding_and_notetaking_app/).
+Moobo is developed after a concept by [Heru Setiawan](https://hrstwn.github.io/). Heru Setiawan is an illustrator who once came up with the idea of an app he called Moobo. The original mockup can be found on [reddit](https://www.reddit.com/r/elementaryos/comments/kg5uiw/moobo_is_a_moodboarding_and_notetaking_app/).
