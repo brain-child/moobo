@@ -15,11 +15,11 @@ namespace Deserializer {
         } catch (Error e) {
             info (e.message);
 
-            File dir = File.new_for_path(app_dir);
+            File dir = File.new_for_path (app_dir);
 
-            if (!dir.query_exists()) {
+            if (!dir.query_exists ()) {
                 try {
-                    dir.make_directory();
+                    dir.make_directory ();
                     var parser = new Json.Parser ();
                     parser.load_from_data (DemoBoard.get_demo_board ());
                     var root = parser.get_root ();
@@ -40,8 +40,8 @@ namespace Deserializer {
             var board_model = new BoardModel ();
             var object = node.get_object ();
             var widgets = object.get_array_member ("widgets");
-            foreach (var item in widgets.get_elements()) {
-                var n = item.get_object();
+            foreach (var item in widgets.get_elements ()) {
+                var n = item.get_object ();
                 board_model.widgets.add (parse_widgets (n));
             }
             board_model.title = object.get_string_member ("title");

@@ -23,19 +23,19 @@ public class TextController {
     }
 
     private bool on_key_press (Gdk.EventKey event) {
-       var key_name = event.state.to_string ();
+        var key_name = event.state.to_string ();
 
-       // if (event.state == Gdk.ModifierType.CONTROL_MASK && event.str == "+") {
-       if (key_name == "GDK_CONTROL_MASK" && event.str == "+") {
-           movable.font_size += 10;
-           set_font_size (movable.font_size);
-       }
-       // if (event.state == Gdk.ModifierType.CONTROL_MASK && event.str == "-") {
-       if (key_name == "GDK_CONTROL_MASK" && event.str == "-") {
-           movable.font_size -= 10;
-           set_font_size (movable.font_size);
-       }
-       return false;
+        // if (event.state == Gdk.ModifierType.CONTROL_MASK && event.str == "+") {
+        if (key_name == "GDK_CONTROL_MASK" && event.str == "+") {
+            movable.font_size += 10;
+            set_font_size (movable.font_size);
+        }
+        // if (event.state == Gdk.ModifierType.CONTROL_MASK && event.str == "-") {
+        if (key_name == "GDK_CONTROL_MASK" && event.str == "-") {
+            movable.font_size -= 10;
+            set_font_size (movable.font_size);
+        }
+        return false;
     }
 
     public bool on_key_release () {
@@ -43,18 +43,18 @@ public class TextController {
         return false;
     }
 
-     private void update_widget () {
+    private void update_widget () {
         movable.rel_pos_x = movable.margin_start = model.x;
         movable.rel_pos_y = movable.margin_top = model.y;
         movable.buffer.text = model.content;
         movable.font_size = model.font_size;
-     }
+    }
 
-     private void set_font_size (int font_size) {
+    private void set_font_size (int font_size) {
         model.font_size = font_size;
         string style = "textview {
                 font-size: %d%;
-            }".printf(font_size);
+            }".printf (font_size);
 
         var style_provider = new Gtk.CssProvider ();
         try {
@@ -64,6 +64,6 @@ public class TextController {
         } catch (Error e) {
             warning ("%s\n", e.message);
         }
-     }
+    }
 
 }

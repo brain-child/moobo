@@ -17,7 +17,7 @@ namespace Colors {
             case 4:
                 color = "lime";
                 break;
-            case 5: 
+            case 5:
                 color = "mint";
                 break;
             case 6:
@@ -38,7 +38,7 @@ namespace Colors {
         }
         return color;
     }
-    
+
     public string from_name (string color_name) {
         var color = "transparent";
         switch (color_name) {
@@ -77,7 +77,7 @@ namespace Colors {
         }
         return color;
     }
-    
+
     public int from_name_to_index (string color_name) {
         var index = 0;
         switch (color_name) {

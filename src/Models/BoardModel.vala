@@ -8,7 +8,7 @@ public class BoardModel : GLib.Object {
     public bool is_active { set; get; }
 
     public BoardModel () {
-        widgets = new Gee.ArrayList<BaseModel>();
+        widgets = new Gee.ArrayList<BaseModel> ();
         color = "transparent";
         title = "Board";
         is_active = false;

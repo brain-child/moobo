@@ -91,7 +91,7 @@ public class LabelController {
         model.font_size = font_size;
         string style = "textview {
             font-size: %d%;
-        }".printf(font_size);
+        }".printf (font_size);
 
         var style_provider = new Gtk.CssProvider ();
         try {
