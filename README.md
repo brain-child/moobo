@@ -11,3 +11,7 @@ Use different kind of widgets. Drag, stack, scale or color them.
 ![moobo light](/preview/moobo_light.png)
 
 ![moobo dark](/preview/moobo_dark.png)
+
+### Credits
+
+Moobo is developed after a concept from [hrstwn](https://github.com/hrstwn). He provided a mockup which can be found on [reddit](https://www.reddit.com/r/elementaryos/comments/kg5uiw/moobo_is_a_moodboarding_and_notetaking_app/).
