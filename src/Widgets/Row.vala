@@ -71,7 +71,13 @@ public class Row : Gtk.ListBoxRow {
     }
 
     private void create_menu () {
-        rename_item = new Gtk.MenuItem.with_label (_("Rename"));
+
+        rename_item = new Gtk.MenuItem ();
+        rename_item.add (new Granite.AccelLabel (
+            _("Rename"),
+            "F2"
+        ));
+
         menu_item = new MenuItemColor ();
         menu_item.check_color (Colors.from_name_to_index (color));
 

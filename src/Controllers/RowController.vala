@@ -71,7 +71,7 @@ public class RowController {
         board_controller.model.color = color_name;
     }
 
-    private void rename () {
+    public void rename () {
         row.display_name_label.hide ();
         var textview = new Gtk.TextView () {
             wrap_mode = Gtk.WrapMode.NONE,
@@ -83,7 +83,7 @@ public class RowController {
         textview.grab_focus ();
         var textbuffer = textview.get_buffer ();
         textbuffer.set_text (row.display_name_label.label);
-        
+
         textview.focus_out_event.connect (() => {
             if (textbuffer.text.strip () == "") {
                 textbuffer.text = "Board";
@@ -95,7 +95,7 @@ public class RowController {
             row.renamed (textbuffer.text);
             return false;
         });
-        
+
         textview.key_press_event.connect ((event) => {
             if (event.keyval == Gdk.Key.Return) {
                 board_controller.board.grab_focus ();

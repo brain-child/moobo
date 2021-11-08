@@ -34,12 +34,20 @@ public class Application : Gtk.Application {
         add_action (quit_action);
         set_accels_for_action ("app.quit",  {"<Control>q", "<Control>w"});
 
+        var rename_action = new SimpleAction ("rename", null);
+        add_action (rename_action);
+        set_accels_for_action ("app.rename", {"F2"});
+
         add_window (window);
         window.show_all ();
 
         quit_action.activate.connect (() => {
             window.save ();
             window.destroy ();
+        });
+
+        rename_action.activate.connect (() => {
+            window.rename_selected_board ();
         });
     }
 

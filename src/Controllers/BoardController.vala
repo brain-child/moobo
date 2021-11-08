@@ -7,7 +7,7 @@ public class BoardController {
     public Movable selected_widget { set; get; }
     public Window window { private set; get; }
 
-    private RowController row_controller;
+    public RowController row_controller;
 
     public BoardController.with_model (Window window,  BoardModel model) {
         this.window = window;
@@ -140,7 +140,7 @@ public class BoardController {
 
     private void set_color (string color) {
         var hex_color = Colors.from_name (color);
-        
+
         string style = """
             @define-color colorAccent %s;
             @define-color accent_color %s;

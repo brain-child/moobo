@@ -161,4 +161,12 @@ public class Window : Hdy.ApplicationWindow {
         Serializer.to_json (deck.get_children ());
     }
 
+    public void rename_selected_board () {
+
+        var active_board = (Board) deck.get_visible_child ();
+        if (active_board != null) {
+            active_board.controller.row_controller.rename ();
+        }
+    }
+
 }
