@@ -7,7 +7,7 @@ public class BoardController {
     public Movable selected_widget { set; get; }
     public Window window { private set; get; }
 
-    private RowController row_controller;
+    public RowController row_controller;
 
     public BoardController.with_model (Window window, BoardModel model) {
         this.window = window;

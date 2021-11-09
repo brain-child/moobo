@@ -71,7 +71,7 @@ public class RowController {
         board_controller.model.color = color_name;
     }
 
-    private void rename () {
+    public void rename () {
         row.display_name_label.hide ();
         var textview = new Gtk.TextView () {
             wrap_mode = Gtk.WrapMode.NONE,
