@@ -9,7 +9,7 @@ public class BoardController {
 
     private RowController row_controller;
 
-    public BoardController.with_model (Window window,  BoardModel model) {
+    public BoardController.with_model (Window window, BoardModel model) {
         this.window = window;
         this.model = model;
         this.board = new Board (this);
@@ -140,7 +140,7 @@ public class BoardController {
 
     private void set_color (string color) {
         var hex_color = Colors.from_name (color);
-        
+
         string style = """
             @define-color colorAccent %s;
             @define-color accent_color %s;

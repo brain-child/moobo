@@ -1,11 +1,11 @@
 namespace DemoBoard {
 
-    private const string text_a = _("Widget selection");
-    private const string text_b = _("Double click anywhere to add a widget");
-    private const string text_c = _("Change font size: ctrl +/-\nsave and close app: ctrl q/w");
-    private const string text_d = _("Right click on widget for\ncontext menu.\n(when 'grabbing cursor' appears)");
-    private const string text_e = _("Create new board");
-    private const string text_f = _("Right click to edit");
+    private const string TEXT_A = _("Widget selection");
+    private const string TEXT_B = _("Double click anywhere to add a widget");
+    private const string TEXT_C = _("Change font size: ctrl +/-\nsave and close app: ctrl q/w");
+    private const string TEXT_D = _("Right click on widget for\ncontext menu.\n(when 'grabbing cursor' appears)");
+    private const string TEXT_E = _("Create new board");
+    private const string TEXT_F = _("Right click to edit");
 
     public string get_demo_board () {
         return """
@@ -69,6 +69,6 @@ namespace DemoBoard {
                 ]
               }
             ]
-        """.printf (text_a, text_b, text_c, text_d, text_e, text_f);
+        """.printf (TEXT_A, TEXT_B, TEXT_C, TEXT_D, TEXT_E, TEXT_F);
     }
 }

@@ -39,16 +39,16 @@ public class Board : Gtk.EventBox {
         drawing_area.draw.connect ((widget, context) => {
             var width = get_allocated_width ();
             var height = get_allocated_height ();
-            context.set_source_rgb(0.7, 0.7, 0.7);
-            context.fill();
+            context.set_source_rgb (0.7, 0.7, 0.7);
+            context.fill ();
             var spacing = 20;
             var y = 0;
             var x = spacing;
             context.set_line_width (2.0);
             while (x <= width ) {
                 while (y <= height) {
-                    context.move_to(x, y);
-                    context.line_to(x, y + 2);
+                    context.move_to (x, y);
+                    context.line_to (x, y + 2);
                     y += spacing;
                 }
                 y = 0;

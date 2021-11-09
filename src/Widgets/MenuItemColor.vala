@@ -58,7 +58,7 @@ public class MenuItemColor : Gtk.MenuItem {
         if (color == 0 || color > color_buttons.size) {
             return;
         }
-        color_buttons[color -1].active = true;
+        color_buttons[color - 1].active = true;
     }
 
     private bool button_pressed_cb (Gtk.Widget widget, Gdk.EventButton event) {

@@ -222,7 +222,7 @@ public abstract class Movable : Gtk.EventBox {
 
     private bool on_motion_notify (Gtk.Widget widget, Gdk.EventMotion event) {
         widget.set_opacity (0.7);
-        
+
         var display = get_display ();
         var cursor = new Gdk.Cursor.from_name (display, "grabbing");
         get_window ().set_cursor (cursor);

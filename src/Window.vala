@@ -1,6 +1,6 @@
 public class Window : Hdy.ApplicationWindow {
 
-    public Type fab_selection { private set; get; default = typeof(TextWidget); }
+    public Type fab_selection { private set; get; default = typeof (TextWidget); }
     public Gtk.ListBox listbox { private set; get; }
     public Hdy.HeaderBar board_header { private set; get; }
     public Hdy.Deck deck { private set; get; }
@@ -84,7 +84,7 @@ public class Window : Hdy.ApplicationWindow {
         style_context.add_class (Gtk.STYLE_CLASS_SIDEBAR);
 
         var floating_button = new FloatingButton ();
-        var floating_button_controller =  new FloatingButtonController (floating_button);
+        var floating_button_controller = new FloatingButtonController (floating_button);
         floating_button_controller.selection.connect ( (type) => {
             fab_selection = type;
         });

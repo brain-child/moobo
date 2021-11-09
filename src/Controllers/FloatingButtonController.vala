@@ -10,13 +10,13 @@ public class FloatingButtonController {
             var index = floating_button.mode_button.selected;
             switch (index) {
                 case 0:
-                    selection ( typeof(TextWidget) );
+                    selection ( typeof (TextWidget) );
                     break;
                 case 1:
-                    selection ( typeof(LabelWidget) );
+                    selection ( typeof (LabelWidget) );
                     break;
                 case 2:
-                    selection ( typeof(ImageWidget) );
+                    selection ( typeof (ImageWidget) );
                     break;
             }
         });

@@ -44,7 +44,7 @@ public class Row : Gtk.ListBoxRow {
             hexpand = true,
         };
 
-        delete_button =  new Gtk.Image.from_icon_name ("", Gtk.IconSize.BUTTON) {
+        delete_button = new Gtk.Image.from_icon_name ("", Gtk.IconSize.BUTTON) {
             halign = Gtk.Align.END,
             margin = 0
         };
