@@ -4,7 +4,7 @@ private class ColorButton : Gtk.CheckButton {
 
     static construct {
         css_provider = new Gtk.CssProvider ();
-        css_provider.load_from_resource ("com/github/brain_child/moobo/styles/ColorButton.css");
+        css_provider.load_from_resource ("com/github/brain-child/moobo/styles/ColorButton.css");
     }
 
     public ColorButton (string color_name) {

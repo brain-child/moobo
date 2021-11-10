@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
 
-    <id>com.github.brain_child.moobo</id>
+    <id>com.github.brain-child.moobo</id>
     <metadata_license>CC0</metadata_license>
     <name>Moobo</name>
     <summary>Visualize your ideas on moodboards</summary>

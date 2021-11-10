@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-  <schema path="/com/github/brain_child/moobo/" id="com.github.brain_child.moobo">
+  <schema path="/com/github/brain-child/moobo/" id="com.github.brain-child.moobo">
     <key name="win-x" type="i">
         <default>100</default>
         <summary>x-position</summary>
