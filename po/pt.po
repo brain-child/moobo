@@ -61,7 +61,7 @@ msgstr "Você quer deletar \"%s\"?"
 #: src/Controllers/RowController.vala:121
 msgid ""
 "The content of this board will be deleted completely and cannot be restored."
-"O conteudo deste board vai ser deletado completamente sem possibilidade de ser restaurado depois."
+msgstr "O conteudo deste board vai ser deletado completamente sem possibilidade de ser restaurado depois."
 
 #: src/Controllers/ImageController.vala:33
 msgid "Open File"
