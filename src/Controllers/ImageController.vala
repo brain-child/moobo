@@ -20,7 +20,6 @@ public class ImageController {
                 margin_start = x,
                 margin_top = y
             };
-            stdout.printf ("%d:%d\n", x, y);
             board_controller.overlay.add_overlay (placeholder);
             placeholder.show ();
             model.path = get_file ();
