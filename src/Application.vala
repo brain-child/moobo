@@ -32,7 +32,7 @@ public class Application : Gtk.Application {
         var window = new Window (this) {
             resizable = false,
         };
-        window.set_size_request (Const.WIN_WIDTH, Const.WIN_HEIGHT);
+        calc_window_size_from_screen_resolution (window);
 
         var quit_action = new SimpleAction ("quit", null);
         add_action (quit_action);
@@ -53,6 +53,16 @@ public class Application : Gtk.Application {
         rename_action.activate.connect (() => {
             window.rename_selected_board ();
         });
+    }
+
+    private void calc_window_size_from_screen_resolution (Window window) {
+        var display = Gdk.Screen.get_default ().get_display ();
+        var monitor = display.get_monitor_at_window (window.get_window ());
+        var rect = monitor.get_geometry ();
+
+        var width = (int) (rect.width * Const.WIN_SCALE_X);
+        var height = (int) (rect.height * Const.WIN_SCALE_Y);
+        window.set_size_request (width, height);
     }
 
 }
