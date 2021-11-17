@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-17 10:10+0100\n"
+"POT-Creation-Date: 2021-11-17 10:34+0100\n"
 "PO-Revision-Date: 2021-11-10 11:25+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17,32 +17,32 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: data/com.github.brain-child.moobo.desktop.in:3
-#: data/com.github.brain-child.moobo.appdata.xml.in:6
+#: data/com.github.brain_child.moobo.desktop.in:3
+#: data/com.github.brain_child.moobo.appdata.xml.in:6
 msgid "Moobo"
 msgstr "Moobo"
 
-#: data/com.github.brain-child.moobo.desktop.in:4
+#: data/com.github.brain_child.moobo.desktop.in:4
 msgid "Moodboard Application"
 msgstr "Moodboard Applikation"
 
-#: data/com.github.brain-child.moobo.desktop.in:5
+#: data/com.github.brain_child.moobo.desktop.in:5
 msgid "Visualize your ideas"
 msgstr "Visualisiere deine Ideen"
 
-#: data/com.github.brain-child.moobo.desktop.in:8
-msgid "com.github.brain-child.moobo"
-msgstr "com.github.brain-child.moobo"
+#: data/com.github.brain_child.moobo.desktop.in:8
+msgid "com.github.brain_child.moobo"
+msgstr "com.github.brain_child.moobo"
 
-#: data/com.github.brain-child.moobo.desktop.in:11
+#: data/com.github.brain_child.moobo.desktop.in:11
 msgid "notes;moobo;moodboard;idea;"
 msgstr "notizen;moobo;moodbord;idee"
 
-#: data/com.github.brain-child.moobo.appdata.xml.in:7
+#: data/com.github.brain_child.moobo.appdata.xml.in:7
 msgid "Visualize your ideas on moodboards"
 msgstr "Visualisiere deine Ideen auf Moodboards"
 
-#: data/com.github.brain-child.moobo.appdata.xml.in:10
+#: data/com.github.brain_child.moobo.appdata.xml.in:10
 msgid ""
 "Visualize your ideas on moodboards. Use different widgets which you can and "
 "drag, stack, scale or color."
@@ -50,7 +50,7 @@ msgstr ""
 "Visualisiere deine Ideen auf Moodboards. Benutze verschiedene Widgets welche "
 "du bewegen, stapeln, skalieren und einfärben kannst."
 
-#: data/com.github.brain-child.moobo.appdata.xml.in:13
+#: data/com.github.brain_child.moobo.appdata.xml.in:13
 msgid ""
 "⚠ NOTE: The potential of this app has not yet been reached. At the moment, "
 "the program is considered as proof of concept. Unexpected behavior may occur."
@@ -58,14 +58,14 @@ msgstr ""
 "⚠ HINWEIS: Das Potential der App ist noch nicht ausgeschöpft. Im Moment wird "
 "sie als Konzeptbeweis betrachtet."
 
-#: data/com.github.brain-child.moobo.appdata.xml.in:22
+#: data/com.github.brain_child.moobo.appdata.xml.in:22
 msgid "brain·​child"
 msgstr "brain·​child"
 
-#: data/com.github.brain-child.moobo.appdata.xml.in:42
+#: data/com.github.brain_child.moobo.appdata.xml.in:42
 msgid "Fix productpage in AppCenter"
 msgstr "Fix für die Produktseite im AppCenter"
 
-#: data/com.github.brain-child.moobo.appdata.xml.in:49
+#: data/com.github.brain_child.moobo.appdata.xml.in:49
 msgid "First release!"
 msgstr "Erste Veröffentlichung!"

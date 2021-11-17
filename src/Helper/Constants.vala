@@ -1,6 +1,6 @@
 namespace Const {
     public const string APP_NAME = "Moobo";
-    public const string APP_ID = "com.github.brain-child.moobo";
+    public const string APP_ID = "com.github.brain_child.moobo";
     public const string APP_PATH = "/" + APP_ID;
 
     public const int WIN_WIDTH = 1400;

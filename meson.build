@@ -1,6 +1,6 @@
 # Project name, programming language and version
 project (
-    'com.github.brain-child.moobo',
+    'com.github.brain_child.moobo',
     'c', 'vala',
     version: '0.1.1'
 )

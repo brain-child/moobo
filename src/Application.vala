@@ -12,7 +12,7 @@ public class Application : Gtk.Application {
     protected override void activate () {
 
         var css_provider = new Gtk.CssProvider ();
-        css_provider.load_from_resource ("com/github/brain-child/moobo/styles/Style.css");
+        css_provider.load_from_resource ("com/github/brain_child/moobo/styles/Style.css");
         Gtk.StyleContext.add_provider_for_screen (
             Gdk.Screen.get_default (),
             css_provider,

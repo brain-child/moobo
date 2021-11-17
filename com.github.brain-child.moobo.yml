@@ -1,10 +1,10 @@
-app-id: com.github.brain-child.moobo
+app-id: com.github.brain_child.moobo
 
 runtime: io.elementary.Platform
 runtime-version: '6'
 sdk: io.elementary.Sdk
 
-command: com.github.brain-child.moobo
+command: com.github.brain_child.moobo
 
 finish-args:
     - '--share=ipc'

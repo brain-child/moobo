@@ -4,7 +4,7 @@ public class ImageController {
     public ImageModel model { private set; get; }
 
     private BoardController board_controller;
-    private string app_dir = "%s/com.github.brain-child.moobo".printf (Environment.get_user_data_dir ());
+    private string app_dir = "%s/com.github.brain_child.moobo".printf (Environment.get_user_data_dir ());
     private int width;
     private int height;
 

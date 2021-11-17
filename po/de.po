@@ -1,13 +1,13 @@
-# German translations for com.github.brain-child.moobo package.
-# Copyright (C) 2021 THE com.github.brain-child.moobo'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the com.github.brain-child.moobo package.
+# German translations for com.github.brain_child.moobo package.
+# Copyright (C) 2021 THE com.github.brain_child.moobo'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.github.brain_child.moobo package.
 # Automatically generated, 2021.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: com.github.brain-child.moobo\n"
+"Project-Id-Version: com.github.brain_child.moobo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-17 10:09+0100\n"
+"POT-Creation-Date: 2021-11-17 10:34+0100\n"
 "PO-Revision-Date: 2021-11-06 16:35+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
