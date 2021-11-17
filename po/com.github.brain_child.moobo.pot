@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.brain-child.moobo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-06 16:46+0100\n"
+"POT-Creation-Date: 2021-11-14 20:17+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,7 +49,7 @@ msgstr ""
 msgid "Image"
 msgstr ""
 
-#: src/Widgets/Row.vala:74
+#: src/Widgets/Row.vala:77
 msgid "Rename"
 msgstr ""
 

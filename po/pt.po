@@ -1,0 +1,146 @@
+# Portuguese translations for com.github.brain_child.moobo package.
+# Copyright (C) 2021 THE com.github.brain_child.moobo'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.github.brain_child.moobo package.
+# Automatically generated, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: com.github.brain_child.moobo\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-17 10:09+0100\n"
+"PO-Revision-Date: 2021-11-14 20:17+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/Window.vala:57
+msgid "New Board"
+msgstr "Board novo"
+
+#: src/Window.vala:72
+msgid "Boards"
+msgstr ""
+
+#: src/Movable.vala:67
+msgid "Change Color"
+msgstr "alterar cor"
+
+#: src/Movable.vala:100
+msgid "Scale"
+msgstr "alterar escala"
+
+#: src/Movable.vala:125 src/Controllers/RowController.vala:127
+msgid "Delete"
+msgstr "deletar"
+
+#: src/Controllers/RowController.vala:120
+#, c-format
+msgid "Do you want to delete \"%s\"?"
+msgstr "Você quer deletar \"%s\"?"
+
+#: src/Controllers/RowController.vala:121
+msgid ""
+"The content of this board will be deleted completely and cannot be restored."
+msgstr ""
+"O conteudo deste board vai ser deletado completamente sem possibilidade de "
+"ser restaurado depois."
+
+#: src/Controllers/ImageController.vala:33
+msgid "Open File"
+msgstr "abrir  arquivo"
+
+#: src/Controllers/ImageController.vala:36
+msgid "Open"
+msgstr "abrir"
+
+#: src/Controllers/ImageController.vala:37
+msgid "Cancel"
+msgstr "cancelar"
+
+#: src/Helper/DemoBoard.vala:3
+msgid "Widget selection"
+msgstr "seleção widget"
+
+#: src/Helper/DemoBoard.vala:4
+msgid "Double click anywhere to add a widget"
+msgstr "Faz um clique duplo em algum lugar para criar um widget"
+
+#: src/Helper/DemoBoard.vala:5
+msgid ""
+"Change font size: ctrl +/-\n"
+"save and close app: ctrl q/w"
+msgstr ""
+"alterar fonte strg: +/-\n"
+"salvar e fechar: strg q/w"
+
+#: src/Helper/DemoBoard.vala:6
+msgid ""
+"Right click on widget for\n"
+"context menu.\n"
+"(when 'grabbing cursor' appears)"
+msgstr ""
+"clique com botão direito em cima de um widget\n"
+"abrir menu contextual.\n"
+"( em caso ponteiro de mão aparece )"
+
+#: src/Helper/DemoBoard.vala:7
+msgid "Create new board"
+msgstr "criar um Board novo"
+
+#: src/Helper/DemoBoard.vala:8
+msgid "Right click to edit"
+msgstr "clique com botão direito para alterar"
+
+#: src/Widgets/FloatingButton.vala:33
+msgid "Text"
+msgstr "texto"
+
+#: src/Widgets/FloatingButton.vala:34
+msgid "Label"
+msgstr ""
+
+#: src/Widgets/FloatingButton.vala:35
+msgid "Image"
+msgstr "imagem"
+
+#: src/Widgets/Row.vala:77
+msgid "Rename"
+msgstr "mudar o nome"
+
+#~ msgid "Moodboard Application"
+#~ msgstr "aplicação Moodboard"
+
+#~ msgid "Visualize your ideas"
+#~ msgstr "Visualize as suas ideas"
+
+#~ msgid "notes;moobo;moodboard;idea;"
+#~ msgstr "notas;moobo;moodboard;ideas"
+
+#~ msgid "Visualize your ideas on moodboards"
+#~ msgstr "Visualize as suas ideas num moodboard"
+
+#~ msgid ""
+#~ "Visualize your ideas on moodboards. Use different widgets which you can "
+#~ "and drag, stack, scale or color."
+#~ msgstr ""
+#~ "Visualize as suas ideas num moodboard, usando widgets diferentes. Voçe "
+#~ "pode movear e empilhar os widgets. Tambem voçe pode alterar a escala e a "
+#~ "cor"
+
+#~ msgid ""
+#~ "⚠ NOTE: The potential of this app has not yet been reached. At the "
+#~ "moment, the program is considered as proof of concept. Unexpected "
+#~ "behavior may occur."
+#~ msgstr ""
+#~ "⚠ Aviso: O potencial desse aplicatovo ainda não está sendo aproveitado. "
+#~ "Neste momento o aplicativo é usado como a evidencia de uma conceita."
+
+#~ msgid "Fix productpage in AppCenter"
+#~ msgstr "Consertado pela site do produto no AppCenter"
+
+#~ msgid "First release!"
+#~ msgstr "Publicada pela primeira vez!"
