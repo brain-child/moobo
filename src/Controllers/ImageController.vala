@@ -13,8 +13,8 @@ public class ImageController {
         this.movable = new ImageWidget (this);
         this.model = model;
 
-        if (model.path == "") { 
-            var placeholder = new Gtk.Image.from_icon_name ("image-missing", Gtk.IconSize.DIALOG) {
+        if (model.path == "") {
+            var placeholder = new Gtk.Image.from_icon_name ("image-x-generic", Gtk.IconSize.DIALOG) {
                 valign = Gtk.Align.START,
                 halign = Gtk.Align.START,
                 margin_start = x,
