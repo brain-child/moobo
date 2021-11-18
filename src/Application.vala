@@ -116,16 +116,21 @@ public class Application : Gtk.Application {
             column_spacing = 12,
             row_spacing = 12,
             margin = 36,
+            margin_top = 12
         };
 
         shortcuts.attach (new Granite.HeaderLabel (_("Application")), 0, 0, 2);
-        shortcuts.attach (new Granite.AccelLabel (_("Save and Quit:"), "<Ctrl>W"), 1, 1);
-        shortcuts.attach (new Granite.AccelLabel ("", "<Ctrl>Q"), 1, 2);
+        shortcuts.attach (new Gtk.Label ("Save and Quit:"){ halign = Gtk.Align.END }, 1, 1);
+        shortcuts.attach (new Granite.AccelLabel ("", "<Ctrl>W"){ halign = Gtk.Align.START },2, 1);
+        shortcuts.attach (new Granite.AccelLabel ("", "<Ctrl>Q"){ halign = Gtk.Align.START }, 2, 2);
         shortcuts.attach (new Granite.HeaderLabel (_("Board")), 0, 3, 2);
-        shortcuts.attach (new Granite.AccelLabel (_("Rename:"), "F2"), 1, 4);
+        shortcuts.attach (new Gtk.Label ("Rename:"){ halign = Gtk.Align.END }, 1, 4);
+        shortcuts.attach (new Granite.AccelLabel ("", "F2"){ halign = Gtk.Align.START }, 2, 4);
         shortcuts.attach (new Granite.HeaderLabel (_("Widgets")), 0, 5, 2);
-        shortcuts.attach (new Granite.AccelLabel (_("Increase fontsize:"), "<Ctrl>plus"), 1, 6);
-        shortcuts.attach (new Granite.AccelLabel (_("Decrease fontsize:"), "<Ctrl>minus"), 1, 7);
+        shortcuts.attach (new Gtk.Label ("Increase font:"){ halign = Gtk.Align.END }, 1, 6);
+        shortcuts.attach (new Granite.AccelLabel ("", "<Ctrl>plus"){ halign = Gtk.Align.START }, 2, 6);
+        shortcuts.attach (new Gtk.Label ("Decrease font:"){ halign = Gtk.Align.END }, 1, 7);
+        shortcuts.attach (new Granite.AccelLabel ("", "<Ctrl>minus"){ halign = Gtk.Align.START }, 2, 7);
 
         layout.add (shortcuts);
 
