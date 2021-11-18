@@ -13,7 +13,18 @@ public class ImageController {
         this.movable = new ImageWidget (this);
         this.model = model;
 
-        if (model.path == "") { model.path = get_file (); }
+        if (model.path == "") {
+            var placeholder = new Gtk.Image.from_icon_name ("image-x-generic", Gtk.IconSize.DIALOG) {
+                valign = Gtk.Align.START,
+                halign = Gtk.Align.START,
+                margin_start = x,
+                margin_top = y
+            };
+            board_controller.overlay.add_overlay (placeholder);
+            placeholder.show ();
+            model.path = get_file ();
+            board_controller.overlay.remove (placeholder);
+        }
 
         Gdk.Pixbuf.get_file_info (model.path, out width, out height);
 
