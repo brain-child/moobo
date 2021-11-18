@@ -42,6 +42,10 @@ public class Application : Gtk.Application {
         add_action (rename_action);
         set_accels_for_action ("app.rename", {"F2"});
 
+        var help_action = new SimpleAction ("help", null);
+        add_action (help_action);
+        set_accels_for_action ("app.help", {"Escape"});
+
         add_window (window);
         window.show_all ();
 
@@ -53,6 +57,10 @@ public class Application : Gtk.Application {
         rename_action.activate.connect (() => {
             window.rename_selected_board ();
         });
+
+        help_action.activate.connect (() => {
+            help_window (window).show_all ();
+        });
     }
 
     private void calc_window_size_from_screen_resolution (Window window) {
@@ -63,6 +71,67 @@ public class Application : Gtk.Application {
         var width = (int) (rect.width * Const.WIN_SCALE_X);
         var height = (int) (rect.height * Const.WIN_SCALE_Y);
         window.set_size_request (width, height);
+    }
+
+    private Hdy.Window help_window (Hdy.ApplicationWindow main_window) {
+
+        var layout = new Gtk.Grid () {
+            orientation = Gtk.Orientation.VERTICAL,
+        };
+
+        var shortcut_window = new Hdy.Window () {
+            skip_taskbar_hint = true,
+            resizable = false,
+        };
+        
+        shortcut_window.set_keep_above (true);
+        shortcut_window.focus_out_event.connect (() => {
+            shortcut_window.destroy ();
+            return true;
+        });
+
+        shortcut_window.key_press_event.connect ((event) => {
+            if (event.keyval == Gdk.Key.Escape) {
+                shortcut_window.destroy ();
+            }
+            return true;
+        });
+        
+        
+
+        var headerbar = new Gtk.HeaderBar () {
+            title = _("Shortcuts"),
+            has_subtitle = false,
+            show_close_button = true
+        };
+        unowned Gtk.StyleContext headerbar_context = headerbar.get_style_context ();
+        headerbar_context.add_class ("default-decoration");
+        headerbar_context.add_class (Gtk.STYLE_CLASS_FLAT);
+        headerbar_context.add_class (Gtk.STYLE_CLASS_TITLEBAR);
+
+        layout.add (headerbar);
+
+        var shortcuts = new Gtk.Grid () {
+            orientation = Gtk.Orientation.VERTICAL,
+            column_spacing = 12,
+            row_spacing = 12,
+            margin = 36,
+        };
+
+        shortcuts.attach (new Granite.HeaderLabel (_("Application")), 0, 0, 2);
+        shortcuts.attach (new Granite.AccelLabel (_("Save and Quit:"), "<Ctrl>W"), 1, 1);
+        shortcuts.attach (new Granite.AccelLabel ("", "<Ctrl>Q"), 1, 2);
+        shortcuts.attach (new Granite.HeaderLabel (_("Board")), 0, 3, 2);
+        shortcuts.attach (new Granite.AccelLabel (_("Rename:"), "F2"), 1, 4);
+        shortcuts.attach (new Granite.HeaderLabel (_("Widgets")), 0, 5, 2);
+        shortcuts.attach (new Granite.AccelLabel (_("Increase fontsize:"), "<Ctrl>plus"), 1, 6);
+        shortcuts.attach (new Granite.AccelLabel (_("Decrease fontsize:"), "<Ctrl>minus"), 1, 7);
+
+        layout.add (shortcuts);
+
+        shortcut_window.add (layout);
+
+        return shortcut_window;
     }
 
 }
