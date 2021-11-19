@@ -8,13 +8,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.brain_child.moobo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-14 20:17+0100\n"
+"POT-Creation-Date: 2021-11-17 10:34+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: src/Window.vala:57
@@ -35,22 +35,6 @@ msgstr ""
 
 #: src/Movable.vala:125 src/Controllers/RowController.vala:127
 msgid "Delete"
-msgstr ""
-
-#: src/Widgets/FloatingButton.vala:33
-msgid "Text"
-msgstr ""
-
-#: src/Widgets/FloatingButton.vala:34
-msgid "Label"
-msgstr ""
-
-#: src/Widgets/FloatingButton.vala:35
-msgid "Image"
-msgstr ""
-
-#: src/Widgets/Row.vala:77
-msgid "Rename"
 msgstr ""
 
 #: src/Controllers/RowController.vala:120
@@ -104,50 +88,18 @@ msgstr ""
 msgid "Right click to edit"
 msgstr ""
 
-#: data/moobo.desktop.in:3 data/moobo.appdata.xml.in:6
-msgid "Moobo"
+#: src/Widgets/FloatingButton.vala:33
+msgid "Text"
 msgstr ""
 
-#: data/moobo.desktop.in:4
-msgid "Moodboard Application"
+#: src/Widgets/FloatingButton.vala:34
+msgid "Label"
 msgstr ""
 
-#: data/moobo.desktop.in:5
-msgid "Visualize your ideas"
+#: src/Widgets/FloatingButton.vala:35
+msgid "Image"
 msgstr ""
 
-#: data/moobo.desktop.in:8
-msgid "com.github.brain_child.moobo"
-msgstr ""
-
-#: data/moobo.desktop.in:11
-msgid "notes;moobo;moodboard;idea;"
-msgstr ""
-
-#: data/moobo.appdata.xml.in:7
-msgid "Visualize your ideas on moodboards"
-msgstr ""
-
-#: data/moobo.appdata.xml.in:10
-msgid ""
-"Visualize your ideas on moodboards. Use different widgets which you can and "
-"drag, stack, scale or color."
-msgstr ""
-
-#: data/moobo.appdata.xml.in:13
-msgid ""
-"⚠ NOTE: The potential of this app has not yet been reached. At the moment, "
-"the program is considered as proof of concept. Unexpected behavior may occur."
-msgstr ""
-
-#: data/moobo.appdata.xml.in:22
-msgid "brain·​child"
-msgstr ""
-
-#: data/moobo.appdata.xml.in:42
-msgid "Fix productpage in AppCenter"
-msgstr ""
-
-#: data/moobo.appdata.xml.in:49
-msgid "First release!"
+#: src/Widgets/Row.vala:77
+msgid "Rename"
 msgstr ""

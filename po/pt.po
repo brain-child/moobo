@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.brain_child.moobo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-14 20:17+0100\n"
+"POT-Creation-Date: 2021-11-19 16:29+0100\n"
 "PO-Revision-Date: 2021-11-14 20:17+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -37,22 +37,6 @@ msgstr "alterar escala"
 msgid "Delete"
 msgstr "deletar"
 
-#: src/Widgets/FloatingButton.vala:33
-msgid "Text"
-msgstr "texto"
-
-#: src/Widgets/FloatingButton.vala:34
-msgid "Label"
-msgstr ""
-
-#: src/Widgets/FloatingButton.vala:35
-msgid "Image"
-msgstr "imagem"
-
-#: src/Widgets/Row.vala:77
-msgid "Rename"
-msgstr "mudar o nome"
-
 #: src/Controllers/RowController.vala:120
 #, c-format
 msgid "Do you want to delete \"%s\"?"
@@ -61,7 +45,9 @@ msgstr "Você quer deletar \"%s\"?"
 #: src/Controllers/RowController.vala:121
 msgid ""
 "The content of this board will be deleted completely and cannot be restored."
-msgstr "O conteudo deste board vai ser deletado completamente sem possibilidade de ser restaurado depois."
+msgstr ""
+"O conteudo deste board vai ser deletado completamente sem possibilidade de "
+"ser restaurado depois."
 
 #: src/Controllers/ImageController.vala:33
 msgid "Open File"
@@ -87,7 +73,9 @@ msgstr "Faz um clique duplo em algum lugar para criar um widget"
 msgid ""
 "Change font size: ctrl +/-\n"
 "save and close app: ctrl q/w"
-msgstr "alterar fonte strg: +/-\nsalvar e fechar: strg q/w"
+msgstr ""
+"alterar fonte strg: +/-\n"
+"salvar e fechar: strg q/w"
 
 #: src/Helper/DemoBoard.vala:6
 msgid ""
@@ -95,7 +83,9 @@ msgid ""
 "context menu.\n"
 "(when 'grabbing cursor' appears)"
 msgstr ""
-"clique com botão direito em cima de um widget\nabrir menu contextual.\n( em caso ponteiro de mão aparece )"
+"clique com botão direito em cima de um widget\n"
+"abrir menu contextual.\n"
+"( em caso ponteiro de mão aparece )"
 
 #: src/Helper/DemoBoard.vala:7
 msgid "Create new board"
@@ -105,51 +95,18 @@ msgstr "criar um Board novo"
 msgid "Right click to edit"
 msgstr "clique com botão direito para alterar"
 
-#: data/moobo.desktop.in:3 data/moobo.appdata.xml.in:6
-msgid "Moobo"
+#: src/Widgets/FloatingButton.vala:33
+msgid "Text"
+msgstr "texto"
+
+#: src/Widgets/FloatingButton.vala:34
+msgid "Label"
 msgstr ""
 
-#: data/moobo.desktop.in:4
-msgid "Moodboard Application"
-msgstr "aplicação Moodboard"
+#: src/Widgets/FloatingButton.vala:35
+msgid "Image"
+msgstr "imagem"
 
-#: data/moobo.desktop.in:5
-msgid "Visualize your ideas"
-msgstr "Visualize as suas ideas"
-
-#: data/moobo.desktop.in:8
-msgid "com.github.brain_child.moobo"
-msgstr ""
-
-#: data/moobo.desktop.in:11
-msgid "notes;moobo;moodboard;idea;"
-msgstr "notas;moobo;moodboard;ideas"
-
-#: data/moobo.appdata.xml.in:7
-msgid "Visualize your ideas on moodboards"
-msgstr "Visualize as suas ideas num moodboard"
-
-#: data/moobo.appdata.xml.in:10
-msgid ""
-"Visualize your ideas on moodboards. Use different widgets which you can and "
-"drag, stack, scale or color."
-msgstr ""
-"Visualize as suas ideas num moodboard, usando widgets diferentes. Voçe pode movear e empilhar os widgets. Tambem voçe pode alterar a escala e a cor"
-
-#: data/moobo.appdata.xml.in:13
-msgid ""
-"⚠ NOTE: The potential of this app has not yet been reached. At the moment, "
-"the program is considered as proof of concept. Unexpected behavior may occur."
-msgstr "⚠ Aviso: O potencial desse aplicatovo ainda não está sendo aproveitado. Neste momento o aplicativo é usado como a evidencia de uma conceita."
-
-#: data/moobo.appdata.xml.in:22
-msgid "brain·​child"
-msgstr ""
-
-#: data/moobo.appdata.xml.in:42
-msgid "Fix productpage in AppCenter"
-msgstr "Consertado pela site do produto no AppCenter"
-
-#: data/moobo.appdata.xml.in:49
-msgid "First release!"
-msgstr "Publicada pela primeira vez!"
+#: src/Widgets/Row.vala:77
+msgid "Rename"
+msgstr "mudar o nome"
