@@ -80,10 +80,12 @@ public class Application : Gtk.Application {
         };
 
         var shortcut_window = new Hdy.Window () {
+            window_position = Gtk.WindowPosition.CENTER_ON_PARENT,
+            transient_for = main_window,
             skip_taskbar_hint = true,
             resizable = false,
         };
-        
+
         shortcut_window.set_keep_above (true);
         shortcut_window.focus_out_event.connect (() => {
             shortcut_window.destroy ();
@@ -96,8 +98,6 @@ public class Application : Gtk.Application {
             }
             return true;
         });
-        
-        
 
         var headerbar = new Gtk.HeaderBar () {
             title = _("Shortcuts"),
@@ -120,22 +120,22 @@ public class Application : Gtk.Application {
         };
 
         shortcuts.attach (new Granite.HeaderLabel (_("Application")), 0, 0, 2);
-        shortcuts.attach (new Gtk.Label ("Save and Quit:"){ halign = Gtk.Align.END }, 1, 1);
-        shortcuts.attach (new Granite.AccelLabel ("", "<Ctrl>W"){ halign = Gtk.Align.START },2, 1);
-        shortcuts.attach (new Granite.AccelLabel ("", "<Ctrl>Q"){ halign = Gtk.Align.START }, 2, 2);
-        shortcuts.attach (new Granite.HeaderLabel (_("Board")), 0, 3, 2);
-        shortcuts.attach (new Gtk.Label ("Rename:"){ halign = Gtk.Align.END }, 1, 4);
-        shortcuts.attach (new Granite.AccelLabel ("", "F2"){ halign = Gtk.Align.START }, 2, 4);
-        shortcuts.attach (new Granite.HeaderLabel (_("Widgets")), 0, 5, 2);
-        shortcuts.attach (new Gtk.Label ("Increase font:"){ halign = Gtk.Align.END }, 1, 6);
-        shortcuts.attach (new Granite.AccelLabel ("", "<Ctrl>plus"){ halign = Gtk.Align.START }, 2, 6);
-        shortcuts.attach (new Gtk.Label ("Decrease font:"){ halign = Gtk.Align.END }, 1, 7);
-        shortcuts.attach (new Granite.AccelLabel ("", "<Ctrl>minus"){ halign = Gtk.Align.START }, 2, 7);
+        shortcuts.attach (new Gtk.Label (_("Show shortcuts:")){ halign = Gtk.Align.END }, 1, 1);
+        shortcuts.attach (new Granite.AccelLabel ("", "Escape"){ halign = Gtk.Align.START },2, 1);
+        shortcuts.attach (new Gtk.Label (_("Save and Quit:")){ halign = Gtk.Align.END }, 1, 2);
+        shortcuts.attach (new Granite.AccelLabel ("", "<Ctrl>W"){ halign = Gtk.Align.START },2, 2);
+        shortcuts.attach (new Granite.AccelLabel ("", "<Ctrl>Q"){ halign = Gtk.Align.START }, 2, 3);
+        shortcuts.attach (new Granite.HeaderLabel (_("Board")), 0, 4, 2);
+        shortcuts.attach (new Gtk.Label (_("Rename:")){ halign = Gtk.Align.END }, 1, 5);
+        shortcuts.attach (new Granite.AccelLabel ("", "F2"){ halign = Gtk.Align.START }, 2, 5);
+        shortcuts.attach (new Granite.HeaderLabel (_("Widgets")), 0, 6, 2);
+        shortcuts.attach (new Gtk.Label (_("Increase font size:")){ halign = Gtk.Align.END }, 1, 7);
+        shortcuts.attach (new Granite.AccelLabel ("", "<Ctrl>plus"){ halign = Gtk.Align.START }, 2, 7);
+        shortcuts.attach (new Gtk.Label (_("Decrease font size:")){ halign = Gtk.Align.END }, 1, 8);
+        shortcuts.attach (new Granite.AccelLabel ("", "<Ctrl>minus"){ halign = Gtk.Align.START }, 2, 8);
 
         layout.add (shortcuts);
-
         shortcut_window.add (layout);
-
         return shortcut_window;
     }
 

@@ -64,10 +64,10 @@ public abstract class Movable : Gtk.EventBox {
 
         if (event.button == 3) {
             Gtk.Menu menu = new Gtk.Menu ();
-            Gtk.MenuItem color = new Gtk.MenuItem.with_label (_("Change Color")) {
+            Gtk.MenuItem color_item = new Gtk.MenuItem.with_label (_("Change Color")) {
                 sensitive = false
             };
-            color.activate.connect (() => {
+            color_item.activate.connect (() => {
                 var dialog = new Gtk.ColorChooserDialog (null, null);
                 dialog.response.connect ((id) => {
                     if (id == -5) {
@@ -83,10 +83,10 @@ public abstract class Movable : Gtk.EventBox {
                 dialog.run ();
             });
 
-            var font = new Gtk.MenuItem.with_label ("Change Font") {
+            var font_item = new Gtk.MenuItem.with_label ("Change Font") {
                 sensitive = false
             };
-            font.activate.connect (() => {
+            font_item.activate.connect (() => {
                 var dialog = new Gtk.FontChooserDialog (null, null);
                 dialog.response.connect ((id) => {
                     if (id == -5) {
@@ -97,10 +97,10 @@ public abstract class Movable : Gtk.EventBox {
                 dialog.run ();
             });
 
-            var resize = new Gtk.MenuItem.with_label (_("Scale")) {
+            var resize_item = new Gtk.MenuItem.with_label (_("Scale")) {
                 sensitive = false
             };
-            resize.activate.connect (() => {
+            resize_item.activate.connect (() => {
                 overlay.reorder_overlay (controller.board.revealer, -2);
                 var image_widget = widget as ImageWidget;
                 var scale_val = image_widget.controller.model.scale_factor;
@@ -139,23 +139,23 @@ public abstract class Movable : Gtk.EventBox {
                 this.destroy ();
             });
             menu.attach_to_widget (widget, null);
-            menu.add (color);
-            // menu.add (font);
-            menu.add (resize);
+            menu.add (color_item);
+            // menu.add (font_item);
+            menu.add (resize_item);
             menu.add (new Gtk.SeparatorMenuItem ());
             menu.add (delete_item);
             menu.show_all ();
             menu.popup_at_pointer (event);
 
             if (widget is LabelWidget) {
-                color.sensitive = true;
-                font.sensitive = true;
+                color_item.sensitive = true;
+                font_item.sensitive = true;
             }
             if (widget is TextWidget) {
-                font.sensitive = true;
+                font_item.sensitive = true;
             }
             if (widget is ImageWidget) {
-                resize.sensitive = true;
+                resize_item.sensitive = true;
             }
         }
 
