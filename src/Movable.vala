@@ -83,7 +83,7 @@ public abstract class Movable : Gtk.EventBox {
                 dialog.run ();
             });
 
-            var font = new Gtk.MenuItem.with_label ("Change Font") {
+            var font = new Gtk.MenuItem.with_label (_("Change Font")) {
                 sensitive = false
             };
             font.activate.connect (() => {

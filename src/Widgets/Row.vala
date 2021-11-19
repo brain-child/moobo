@@ -4,7 +4,7 @@ public class Row : Gtk.ListBoxRow {
     public signal void renamed (string title);
 
     public Gtk.Grid source_color { private set; get; }
-    public string label { set; get; default = "Board"; }
+    public string label { set; get; default = _("Board"); }
     public Gtk.Label display_name_label { set; get; }
     public Gtk.EventBox delete_eventbox { private set; get; }
     public Gtk.Grid grid { private set; get; }
