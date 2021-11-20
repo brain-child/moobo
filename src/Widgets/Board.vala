@@ -1,6 +1,6 @@
 public class Board : Gtk.EventBox {
 
-    public string title { set; get; default = "Board"; }
+    public string title { set; get; default = _("Board"); }
     public Gtk.Overlay overlay { private set; get; }
     public BoardController controller { private set; get; }
     public Gtk.Revealer revealer { private set; get; }

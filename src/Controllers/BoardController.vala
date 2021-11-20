@@ -64,7 +64,7 @@ public class BoardController {
         return false;
     }
 
-    private bool on_button_press (Gtk.Widget widget, Gdk.EventButton event) {
+    private bool on_button_press (Gdk.EventButton event) {
         board.grab_focus ();
         board.revealer.reveal_child = false;
 
@@ -73,28 +73,28 @@ public class BoardController {
 
             var x = (int) event.x;
             var y = (int) event.y;
-            Movable movable = null;
+            Movable widget = null;
 
             switch (selection.name ()) {
                 case "TextWidget":
                     var controller = new TextController (this, x, y);
                     model.widgets.add (controller.model);
-                    movable = controller.movable;
+                    widget = controller.movable;
                     break;
                 case "LabelWidget":
                     var controller = new LabelController (this, x, y);
                     model.widgets.add (controller.model);
-                    movable = controller.movable;
+                    widget = controller.movable;
                     break;
                 case "ImageWidget":
                     var controller = new ImageController (this, x, y);
                     model.widgets.add (controller.model);
-                    movable = controller.movable;
+                    widget = controller.movable;
                     break;
             }
 
-            movable.rel_pos_x = widget.margin_start = x;
-            movable.rel_pos_y = widget.margin_top = y;
+            widget.rel_pos_x = widget.margin_start = x;
+            widget.rel_pos_y = widget.margin_top = y;
 
             overlay.add_overlay (widget);
 
