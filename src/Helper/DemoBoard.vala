@@ -1,5 +1,6 @@
 namespace DemoBoard {
 
+    private const string TITLE = _("Demo");
     private const string TEXT_A = _("Widget selection");
     private const string TEXT_B = _("Double click anywhere to add a widget");
     private const string TEXT_C = _("Change font size: ctrl +/-\nsave and close app: ctrl q/w");
@@ -11,7 +12,7 @@ namespace DemoBoard {
         return """
             [
               {
-                "title" : "Demo",
+                "title" : "%s",
                 "color" : "mint",
                 "active" : true,
                 "widgets" : [
@@ -69,6 +70,6 @@ namespace DemoBoard {
                 ]
               }
             ]
-        """.printf (TEXT_A, TEXT_B, TEXT_C, TEXT_D, TEXT_E, TEXT_F);
+        """.printf (TITLE, TEXT_A, TEXT_B, TEXT_C, TEXT_D, TEXT_E, TEXT_F);
     }
 }

@@ -86,7 +86,7 @@ public class RowController {
 
         textview.focus_out_event.connect (() => {
             if (textbuffer.text.strip () == "") {
-                textbuffer.text = "Board";
+                textbuffer.text = _("Board");
             }
             textview.hide ();
             board_controller.model.title = textbuffer.text;
