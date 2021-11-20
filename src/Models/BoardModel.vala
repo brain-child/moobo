@@ -10,7 +10,7 @@ public class BoardModel : GLib.Object {
     public BoardModel () {
         widgets = new Gee.ArrayList<BaseModel> ();
         color = "transparent";
-        title = "Board";
+        title = _("Board");
         is_active = false;
     }
 
