@@ -70,6 +70,7 @@ public class Application : Gtk.Application {
 
         var width = (int) (rect.width * Const.WIN_SCALE_X);
         var height = (int) (rect.height * Const.WIN_SCALE_Y);
+
         window.set_size_request (width, height);
     }
 

@@ -9,8 +9,7 @@ public class Window : Hdy.ApplicationWindow {
 
     public Window (Gtk.Application application) {
         Object (
-            application: application,
-            title: (Const.APP_NAME)
+            application: application
         );
 
         delete_event.connect (() => {
@@ -162,7 +161,6 @@ public class Window : Hdy.ApplicationWindow {
     }
 
     public void rename_selected_board () {
-
         var active_board = (Board) deck.get_visible_child ();
         if (active_board != null) {
             active_board.controller.row_controller.rename ();

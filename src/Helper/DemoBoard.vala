@@ -8,7 +8,7 @@ namespace DemoBoard {
     private const string TEXT_E = _("Create new board");
     private const string TEXT_F = _("Right click to edit");
 
-    public string get_demo_board () {
+    public string get_demo_board () {    
         return """
             [
               {

@@ -20,11 +20,10 @@ namespace Deserializer {
             if (!dir.query_exists ()) {
                 try {
                     dir.make_directory ();
-                    var parser = new Json.Parser ();
-                    parser.load_from_data (DemoBoard.get_demo_board ());
-                    var root = parser.get_root ();
-
-                    parse_board (root, boards_list);
+                    // var parser = new Json.Parser ();
+                    // parser.load_from_data (DemoBoard.get_demo_board ());
+                    // var root = parser.get_root ();
+                    // parse_board (root, boards_list);
                 } catch (Error e) {
                     warning (e.message);
                 }

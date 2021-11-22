@@ -5,7 +5,7 @@ namespace Serializer {
 
         foreach (var widget in widgets) {
             var board = (Board) widget;
-            var node = serilize_board (board. controller.model);
+            var node = serilize_board (board.controller.model);
             node_array.add_element (node);
         }
 
