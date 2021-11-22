@@ -28,7 +28,9 @@ public class FloatingButton : Gtk.MenuButton {
 
     private Granite.Widgets.ModeButton create_mode_button () {
         mode_button = new Granite.Widgets.ModeButton () {
-            orientation = Gtk.Orientation.VERTICAL
+            orientation = Gtk.Orientation.VERTICAL,
+            homogeneous = false,
+            margin = 5
         };
         mode_button.append_text (_("Text"));
         mode_button.append_text (_("Label"));
