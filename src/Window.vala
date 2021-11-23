@@ -124,7 +124,7 @@ public class Window : Hdy.ApplicationWindow {
     }
 
     public Board create_new_board (BoardModel model = new BoardModel ()) {
-        var board_controller = new BoardController.with_model (this, model);
+        var board_controller = new BoardController (this, model);
 
         listbox.add (board_controller.row);
         deck.add (board_controller.board);
@@ -138,8 +138,62 @@ public class Window : Hdy.ApplicationWindow {
 
     private void load_boards () {
         var list = Deserializer.from_json ();
+        // if (list.size == 1) {
+        //     var board_model = list[0];
+        //     if (board_model.title == "Demo") {
+        //         var label_model = board_model.widgets[0];
+
+        //         label_model.x = deck.get_allocated_width () / 2;
+        //         label_model.y = deck.get_allocated_height () / 2;
+        //         stdout.printf ("%d:%d\n", label_model.x, label_model.y);
+        //         // label_model.x = 2;
+        //         // label_model.y = 2;
+        //     }
+        // }
         if (list.size == 0) {
-            create_new_board ();
+            // create_new_board ();
+            var board_controller = new BoardController (this, new BoardModel ());
+            listbox.add (board_controller.row);
+            deck.add (board_controller.board);
+
+            var label_controller = new LabelController (board_controller, 0, 0);
+            label_controller.movable.buffer.text = "🔨️SHOULD BE CENTERED🔧️";
+            label_controller.on_key_release ();
+            
+
+            var widget = label_controller.movable;
+            
+            board_controller.model.widgets.add (label_controller.model);
+            board_controller.overlay.add_overlay (widget);
+            list.add (board_controller.model);
+
+            size_allocate.connect ((widget_allo) => {
+                deck.size_allocate.connect ((deck_allo)=> {
+                    // var width = widget.get_allocated_width ();
+                    // var height = widget.get_allocated_height ();
+                    var width = widget_allo.width;
+                    var height = widget_allo.height;
+                    
+                    stdout.printf ("widget: %d:%d\n", width, height);
+                    stdout.printf ("deck: %d:%d\n", deck_allo.width, deck_allo.height);
+                    
+                    var x1 = (deck_allo.width / 2) - (width/2);
+                    var y1 = (deck_allo.height / 2) - (height/2);
+                    widget.controller.model.x = x1;
+                    widget.controller.model.y = y1;
+                    stdout.printf ("x1/x2: %d:%d\n", x1, y1);
+
+                    widget.rel_pos_x = widget.margin_start = x1;
+                    widget.rel_pos_y = widget.margin_top = y1;
+
+                    stdout.printf ("allo: %d:%d\n", widget.margin_start, widget.margin_top);
+                    print ("\n");
+                    board_controller.overlay.remove (widget);
+                    board_controller.overlay.add_overlay (widget);
+                });
+            });
+
+            return;
         }
         foreach (var model in list) {
             create_new_board (model);
