@@ -36,6 +36,19 @@
     <content_rating type="oars-1.1" />
 
     <releases>
+        <release version="0.1.2" date="2021-12-10" urgency="medium">
+            <description>
+                <ul>
+                    <li>Correct window size is calculated automatically</li>
+                    <li>Show shortcuts by pressing ESC</li>
+                    <li>Rename board by pressing F2</li>
+                    <li>Show placeholder when adding an image</li>
+                    <li>Add French translation</li>
+                    <li>Add Portuguese translation</li>
+                    <li>visual improvements</li>
+                </ul>
+            </description>
+        </release>
         <release version="0.1.1" date="2021-11-06" urgency="medium">
             <description>
                 <ul>
