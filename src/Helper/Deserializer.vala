@@ -22,7 +22,6 @@ namespace Deserializer {
                 try {
                     File dir = File.new_for_path (app_dir);
                     dir.make_directory ();
-
                     // var parser = new Json.Parser ();
                     // parser.load_from_data (DemoBoard.get_demo_board ());
                     // var root = parser.get_root ();

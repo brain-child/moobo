@@ -9,7 +9,7 @@ public class BoardController {
 
     public RowController row_controller;
 
-    public BoardController.with_model (Window window, BoardModel model) {
+    public BoardController (Window window, BoardModel model) {
         this.window = window;
         this.model = model;
         this.board = new Board (this);
@@ -109,7 +109,7 @@ public class BoardController {
                     break;
             }
         }
-
+        
         return true;
     }
 

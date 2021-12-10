@@ -32,14 +32,10 @@ public class LabelController {
     private bool on_key_press (Gdk.EventKey event) {
         var key_name = event.state.to_string ();
 
-        // worked once fine:
-        // if (event.state == Gdk.ModifierType.CONTROL_MASK && event.keyval == Gdk.Key.plus) {
         if (key_name == "GDK_CONTROL_MASK" && event.keyval == Gdk.Key.plus) {
             movable.font_size += 10;
             set_font_size (movable.font_size);
         }
-        // worked once fine:
-        // if (event.state == Gdk.ModifierType.CONTROL_MASK && event.keyval == Gdk.Key.minus) {
         if (key_name == "GDK_CONTROL_MASK" && event.keyval == Gdk.Key.minus) {
             movable.font_size -= 10;
             set_font_size (movable.font_size);
