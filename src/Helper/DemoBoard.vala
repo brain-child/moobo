@@ -8,8 +8,6 @@ namespace DemoBoard {
     private const string TEXT_E = _("Create new board");
     private const string TEXT_F = _("Right click to edit");
 
-    private const string TEXT_G = _("HELLAS");
-
     public string get_demo_board () {
         return """
             [
@@ -19,81 +17,59 @@ namespace DemoBoard {
                 "active" : true,
                 "widgets" : [
                   {
+                    "model" : "TextWidget",
+                    "x" : 915,
+                    "y" : 695,
+                    "font-size" : 150,
+                    "content" : "%s -->"
+                  },
+                  {
                     "model" : "LabelWidget",
-                    "x" : 1,
-                    "y" : 1,
+                    "x" : 149,
+                    "y" : 136,
                     "font-size" : 150,
                     "content" : "%s",
                     "color" : "rgb(32,74,135)"
+                  },
+                  {
+                    "model" : "LabelWidget",
+                    "x" : 645,
+                    "y" : 261,
+                    "font-size" : 150,
+                    "content" : "%s",
+                    "color" : "rgb(255,255,255)"
+                  },
+                  {
+                    "model" : "TextWidget",
+                    "x" : 407,
+                    "y" : 441,
+                    "font-size" : 170,
+                    "content" : "%s"
+                  },
+                  {
+                    "model" : "TextWidget",
+                    "x" : 1,
+                    "y" : 728,
+                    "font-size" : 120,
+                    "content" : "<-- %s"
+                  },
+                  {
+                    "model" : "TextWidget",
+                    "x" : 1,
+                    "y" : 25,
+                    "font-size" : 130,
+                    "content" : "<-- %s"
+                  },
+                  {
+                    "model" : "TextWidget",
+                    "x" : 474,
+                    "y" : 117,
+                    "font-size" : 210,
+                    "content" : "🙃️"
                   }
                 ]
               }
             ]
-        """.printf (TITLE, TEXT_G);
+        """.printf (TITLE, TEXT_A, TEXT_B, TEXT_C, TEXT_D, TEXT_E, TEXT_F);
     }
-
-    // public string get_demo_board () {
-    //     return """
-    //         [
-    //           {
-    //             "title" : "%s",
-    //             "color" : "mint",
-    //             "active" : true,
-    //             "widgets" : [
-    //               {
-    //                 "model" : "TextWidget",
-    //                 "x" : 915,
-    //                 "y" : 695,
-    //                 "font-size" : 150,
-    //                 "content" : "%s -->"
-    //               },
-    //               {
-    //                 "model" : "LabelWidget",
-    //                 "x" : 149,
-    //                 "y" : 136,
-    //                 "font-size" : 150,
-    //                 "content" : "%s",
-    //                 "color" : "rgb(32,74,135)"
-    //               },
-    //               {
-    //                 "model" : "LabelWidget",
-    //                 "x" : 645,
-    //                 "y" : 261,
-    //                 "font-size" : 150,
-    //                 "content" : "%s",
-    //                 "color" : "rgb(255,255,255)"
-    //               },
-    //               {
-    //                 "model" : "TextWidget",
-    //                 "x" : 407,
-    //                 "y" : 441,
-    //                 "font-size" : 170,
-    //                 "content" : "%s"
-    //               },
-    //               {
-    //                 "model" : "TextWidget",
-    //                 "x" : 1,
-    //                 "y" : 728,
-    //                 "font-size" : 120,
-    //                 "content" : "<-- %s"
-    //               },
-    //               {
-    //                 "model" : "TextWidget",
-    //                 "x" : 1,
-    //                 "y" : 25,
-    //                 "font-size" : 130,
-    //                 "content" : "<-- %s"
-    //               },
-    //               {
-    //                 "model" : "TextWidget",
-    //                 "x" : 474,
-    //                 "y" : 117,
-    //                 "font-size" : 210,
-    //                 "content" : "🙃️"
-    //               }
-    //             ]
-    //           }
-    //         ]
-    //     """.printf (TITLE, TEXT_A, TEXT_B, TEXT_C, TEXT_D, TEXT_E, TEXT_F);
-    // }
 }
