@@ -15,19 +15,22 @@ namespace Deserializer {
         } catch (Error e) {
             info (e.message);
 
-            File dir = File.new_for_path (app_dir);
+            var settings = new GLib.Settings (Const.APP_ID);
+            var first_time_running = settings.get_boolean ("first-run");
 
-            if (!dir.query_exists ()) {
+            if (first_time_running) {
                 try {
+                    File dir = File.new_for_path (app_dir);
                     dir.make_directory ();
-                    var parser = new Json.Parser ();
-                    parser.load_from_data (DemoBoard.get_demo_board ());
-                    var root = parser.get_root ();
 
-                    parse_board (root, boards_list);
+                    // var parser = new Json.Parser ();
+                    // parser.load_from_data (DemoBoard.get_demo_board ());
+                    // var root = parser.get_root ();
+                    // parse_board (root, boards_list);
                 } catch (Error e) {
                     warning (e.message);
                 }
+                settings.set_boolean ("first-run", false);
             }
 
         }

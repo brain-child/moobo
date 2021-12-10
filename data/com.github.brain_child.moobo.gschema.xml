@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
   <schema path="/com/github/brain_child/moobo/" id="com.github.brain_child.moobo">
+    <key name="first-run" type="b">
+        <default>true</default>
+        <summary>first time running flag</summary>
+        <description>flag to determine if app is running for the first time</description>
+    </key>
     <key name="win-x" type="i">
         <default>100</default>
         <summary>x-position</summary>
