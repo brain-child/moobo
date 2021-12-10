@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-19 21:26+0100\n"
+"POT-Creation-Date: 2021-12-10 23:21+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,9 +59,37 @@ msgid "brain·​child"
 msgstr ""
 
 #: data/com.github.brain_child.moobo.appdata.xml.in:42
+msgid "Window size is calculated dynamically"
+msgstr ""
+
+#: data/com.github.brain_child.moobo.appdata.xml.in:43
+msgid "Show shortcuts by pressing ESC"
+msgstr ""
+
+#: data/com.github.brain_child.moobo.appdata.xml.in:44
+msgid "Rename board by pressing F2"
+msgstr ""
+
+#: data/com.github.brain_child.moobo.appdata.xml.in:45
+msgid "Show placeholder when adding an image"
+msgstr ""
+
+#: data/com.github.brain_child.moobo.appdata.xml.in:46
+msgid "Add French translation"
+msgstr ""
+
+#: data/com.github.brain_child.moobo.appdata.xml.in:47
+msgid "Add Portuguese translation"
+msgstr ""
+
+#: data/com.github.brain_child.moobo.appdata.xml.in:48
+msgid "Visual improvements"
+msgstr ""
+
+#: data/com.github.brain_child.moobo.appdata.xml.in:55
 msgid "Fix productpage in AppCenter"
 msgstr ""
 
-#: data/com.github.brain_child.moobo.appdata.xml.in:49
+#: data/com.github.brain_child.moobo.appdata.xml.in:62
 msgid "First release!"
 msgstr ""

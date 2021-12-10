@@ -126,7 +126,7 @@ public class Application : Gtk.Application {
         shortcuts.attach (new Gtk.Label (_("Save and Quit:")){ halign = Gtk.Align.END }, 1, 2);
         shortcuts.attach (new Granite.AccelLabel ("", "<Ctrl>W"){ halign = Gtk.Align.START },2, 2);
         shortcuts.attach (new Granite.AccelLabel ("", "<Ctrl>Q"){ halign = Gtk.Align.START }, 2, 3);
-        shortcuts.attach (new Granite.HeaderLabel (_("Board")), 0, 4, 2);
+        shortcuts.attach (new Granite.HeaderLabel (_("Boards")), 0, 4, 2);
         shortcuts.attach (new Gtk.Label (_("Rename:")){ halign = Gtk.Align.END }, 1, 5);
         shortcuts.attach (new Granite.AccelLabel ("", "F2"){ halign = Gtk.Align.START }, 2, 5);
         shortcuts.attach (new Granite.HeaderLabel (_("Widgets")), 0, 6, 2);

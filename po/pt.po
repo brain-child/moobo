@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.brain_child.moobo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-10 21:19+0100\n"
+"POT-Creation-Date: 2021-12-10 23:37+0100\n"
 "PO-Revision-Date: 2021-11-14 20:17+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17,22 +17,53 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/Window.vala:57
-msgid "New Board"
-msgstr "Board novo"
+#: src/Application.vala:104
+msgid "Shortcuts"
+msgstr ""
 
-#: src/Window.vala:72
+#: src/Application.vala:123
+msgid "Application"
+msgstr ""
+
+#: src/Application.vala:124
+msgid "Show shortcuts:"
+msgstr ""
+
+#: src/Application.vala:126
+msgid "Save and Quit:"
+msgstr ""
+
+#: src/Application.vala:129 src/Window.vala:71
 msgid "Boards"
 msgstr ""
+
+#: src/Application.vala:130
+msgid "Rename:"
+msgstr "mudar o nome:"
+
+#: src/Application.vala:132
+msgid "Widgets"
+msgstr ""
+
+#: src/Application.vala:133
+msgid "Increase font size:"
+msgstr "aumentar tamanho da fonte:"
+
+#: src/Application.vala:135
+msgid "Decrease font size:"
+msgstr "diminuir tamanho da fonte"
+
+#: src/Window.vala:56
+msgid "New Board"
+msgstr "Board novo"
 
 #: src/Movable.vala:67
 msgid "Change Color"
 msgstr "alterar cor"
 
 #: src/Movable.vala:86
-#, fuzzy
 msgid "Change Font"
-msgstr "alterar cor"
+msgstr "alterar fonte"
 
 #: src/Movable.vala:100
 msgid "Scale"
@@ -43,9 +74,8 @@ msgid "Delete"
 msgstr "deletar"
 
 #: src/Controllers/RowController.vala:89 src/Widgets/Row.vala:7
-#, fuzzy
 msgid "Board"
-msgstr "Board novo"
+msgstr "Board"
 
 #: src/Controllers/RowController.vala:120
 #, c-format
@@ -86,9 +116,6 @@ msgstr "imagem"
 #: src/Widgets/Row.vala:77
 msgid "Rename"
 msgstr "mudar o nome"
-
-#~ msgid "Widget selection"
-#~ msgstr "seleção widget"
 
 #~ msgid "Double click anywhere to add a widget"
 #~ msgstr "Faz um clique duplo em algum lugar para criar um widget"
