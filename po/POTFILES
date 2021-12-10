@@ -5,7 +5,7 @@ src/Movable.vala
 src/Controllers/RowController.vala
 src/Controllers/ImageController.vala
 
-src/Helper/DemoBoard.vala
+#src/Helper/DemoBoard.vala
 
 src/Widgets/FloatingButton.vala
 src/Widgets/Row.vala

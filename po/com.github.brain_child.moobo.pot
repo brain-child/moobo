@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.brain_child.moobo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-19 21:34+0100\n"
+"POT-Creation-Date: 2021-12-10 21:19+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,60 +55,27 @@ msgid ""
 "The content of this board will be deleted completely and cannot be restored."
 msgstr ""
 
-#: src/Controllers/ImageController.vala:33
+#: src/Controllers/ImageController.vala:44
 msgid "Open File"
 msgstr ""
 
-#: src/Controllers/ImageController.vala:36
+#: src/Controllers/ImageController.vala:47
 msgid "Open"
 msgstr ""
 
-#: src/Controllers/ImageController.vala:37
+#: src/Controllers/ImageController.vala:48
 msgid "Cancel"
 msgstr ""
 
-#: src/Helper/DemoBoard.vala:3
-msgid "Demo"
-msgstr ""
-
-#: src/Helper/DemoBoard.vala:4
-msgid "Widget selection"
-msgstr ""
-
-#: src/Helper/DemoBoard.vala:5
-msgid "Double click anywhere to add a widget"
-msgstr ""
-
-#: src/Helper/DemoBoard.vala:6
-msgid ""
-"Change font size: ctrl +/-\n"
-"save and close app: ctrl q/w"
-msgstr ""
-
-#: src/Helper/DemoBoard.vala:7
-msgid ""
-"Right click on widget for\n"
-"context menu.\n"
-"(when 'grabbing cursor' appears)"
-msgstr ""
-
-#: src/Helper/DemoBoard.vala:8
-msgid "Create new board"
-msgstr ""
-
-#: src/Helper/DemoBoard.vala:9
-msgid "Right click to edit"
-msgstr ""
-
-#: src/Widgets/FloatingButton.vala:33
+#: src/Widgets/FloatingButton.vala:35
 msgid "Text"
 msgstr ""
 
-#: src/Widgets/FloatingButton.vala:34
+#: src/Widgets/FloatingButton.vala:36
 msgid "Label"
 msgstr ""
 
-#: src/Widgets/FloatingButton.vala:35
+#: src/Widgets/FloatingButton.vala:37
 msgid "Image"
 msgstr ""
 

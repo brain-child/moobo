@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.brain_child.moobo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-17 10:34+0100\n"
+"POT-Creation-Date: 2021-12-10 21:19+0100\n"
 "PO-Revision-Date: 2021-11-06 16:35+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -29,6 +29,11 @@ msgstr "Boards"
 msgid "Change Color"
 msgstr "Farbe ändern"
 
+#: src/Movable.vala:86
+#, fuzzy
+msgid "Change Font"
+msgstr "Farbe ändern"
+
 #: src/Movable.vala:100
 msgid "Scale"
 msgstr "Skalieren"
@@ -36,6 +41,11 @@ msgstr "Skalieren"
 #: src/Movable.vala:125 src/Controllers/RowController.vala:127
 msgid "Delete"
 msgstr "Löschen"
+
+#: src/Controllers/RowController.vala:89 src/Widgets/Row.vala:7
+#, fuzzy
+msgid "Board"
+msgstr "Boards"
 
 #: src/Controllers/RowController.vala:120
 #, c-format
@@ -49,64 +59,58 @@ msgstr ""
 "Der Inhalt des Boards wird komplett gelöscht und kann nicht "
 "wiederhergestellt werden."
 
-#: src/Controllers/ImageController.vala:33
+#: src/Controllers/ImageController.vala:44
 msgid "Open File"
 msgstr "Datei Öffnen"
 
-#: src/Controllers/ImageController.vala:36
+#: src/Controllers/ImageController.vala:47
 msgid "Open"
 msgstr "Öffnen"
 
-#: src/Controllers/ImageController.vala:37
+#: src/Controllers/ImageController.vala:48
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: src/Helper/DemoBoard.vala:3
-msgid "Widget selection"
-msgstr "Widget Auswahl"
-
-#: src/Helper/DemoBoard.vala:4
-msgid "Double click anywhere to add a widget"
-msgstr "Mach irgendwo einen doppelklick um ein Widget zu erstellen"
-
-#: src/Helper/DemoBoard.vala:5
-msgid ""
-"Change font size: ctrl +/-\n"
-"save and close app: ctrl q/w"
-msgstr ""
-"Schriftgröße ändern: strg +/-\n"
-"Speichern und schließen: strg q/w"
-
-#: src/Helper/DemoBoard.vala:6
-msgid ""
-"Right click on widget for\n"
-"context menu.\n"
-"(when 'grabbing cursor' appears)"
-msgstr ""
-"Rechtsklick auf einem Widget\n"
-"öffnet ein Kontextmenü.\n"
-"(wenn 'Handcursor' erscheint)"
-
-#: src/Helper/DemoBoard.vala:7
-msgid "Create new board"
-msgstr "Neues Board erstellen"
-
-#: src/Helper/DemoBoard.vala:8
-msgid "Right click to edit"
-msgstr "Rechtsklick zum ändern"
-
-#: src/Widgets/FloatingButton.vala:33
+#: src/Widgets/FloatingButton.vala:35
 msgid "Text"
 msgstr ""
 
-#: src/Widgets/FloatingButton.vala:34
+#: src/Widgets/FloatingButton.vala:36
 msgid "Label"
 msgstr ""
 
-#: src/Widgets/FloatingButton.vala:35
+#: src/Widgets/FloatingButton.vala:37
 msgid "Image"
 msgstr "Bild"
 
 #: src/Widgets/Row.vala:77
 msgid "Rename"
 msgstr "Umbenennen"
+
+#~ msgid "Widget selection"
+#~ msgstr "Widget Auswahl"
+
+#~ msgid "Double click anywhere to add a widget"
+#~ msgstr "Mach irgendwo einen doppelklick um ein Widget zu erstellen"
+
+#~ msgid ""
+#~ "Change font size: ctrl +/-\n"
+#~ "save and close app: ctrl q/w"
+#~ msgstr ""
+#~ "Schriftgröße ändern: strg +/-\n"
+#~ "Speichern und schließen: strg q/w"
+
+#~ msgid ""
+#~ "Right click on widget for\n"
+#~ "context menu.\n"
+#~ "(when 'grabbing cursor' appears)"
+#~ msgstr ""
+#~ "Rechtsklick auf einem Widget\n"
+#~ "öffnet ein Kontextmenü.\n"
+#~ "(wenn 'Handcursor' erscheint)"
+
+#~ msgid "Create new board"
+#~ msgstr "Neues Board erstellen"
+
+#~ msgid "Right click to edit"
+#~ msgstr "Rechtsklick zum ändern"

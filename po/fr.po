@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.brain_child.moobo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-19 21:34+0100\n"
+"POT-Creation-Date: 2021-12-10 21:19+0100\n"
 "PO-Revision-Date: 2021-11-19 21:06+0100\n"
 "Last-Translator: Nathan Bonnemains (@NathanBnm)\n"
 "Language-Team: none\n"
@@ -57,68 +57,61 @@ msgstr ""
 "Le contenu de ce tableau sera entièrement supprimé et ne pourra pas être "
 "restauré."
 
-#: src/Controllers/ImageController.vala:33
+#: src/Controllers/ImageController.vala:44
 msgid "Open File"
 msgstr "Ouvrir un fichier"
 
-#: src/Controllers/ImageController.vala:36
+#: src/Controllers/ImageController.vala:47
 msgid "Open"
 msgstr "Ouvrir"
 
-#: src/Controllers/ImageController.vala:37
+#: src/Controllers/ImageController.vala:48
 msgid "Cancel"
 msgstr "Annuler"
 
-#: src/Helper/DemoBoard.vala:3
-msgid "Demo"
-msgstr "Démo"
-
-#: src/Helper/DemoBoard.vala:4
-msgid "Widget selection"
-msgstr "Sélection du widget"
-
-#: src/Helper/DemoBoard.vala:5
-msgid "Double click anywhere to add a widget"
-msgstr "Effectuez un double-clic où vous voulez pour ajouter un widget"
-
-#: src/Helper/DemoBoard.vala:6
-msgid ""
-"Change font size: ctrl +/-\n"
-"save and close app: ctrl q/w"
-msgstr ""
-"Modifier la taille de la police : Ctrl +/-\n"
-"Enregistrer et fermer l'application : Ctrl Q/W"
-
-#: src/Helper/DemoBoard.vala:7
-msgid ""
-"Right click on widget for\n"
-"context menu.\n"
-"(when 'grabbing cursor' appears)"
-msgstr ""
-"Effectuez un clic droit sur un widget\n"
-"pour afficher le menu contextuel.\n"
-"(lorsque le curseur « main » apparaît)"
-
-#: src/Helper/DemoBoard.vala:8
-msgid "Create new board"
-msgstr "Créer un nouveau tableau"
-
-#: src/Helper/DemoBoard.vala:9
-msgid "Right click to edit"
-msgstr "Effectuez un clic droit pour modifier"
-
-#: src/Widgets/FloatingButton.vala:33
+#: src/Widgets/FloatingButton.vala:35
 msgid "Text"
 msgstr "Texte"
 
-#: src/Widgets/FloatingButton.vala:34
+#: src/Widgets/FloatingButton.vala:36
 msgid "Label"
 msgstr "Étiquette"
 
-#: src/Widgets/FloatingButton.vala:35
+#: src/Widgets/FloatingButton.vala:37
 msgid "Image"
 msgstr "Image"
 
 #: src/Widgets/Row.vala:77
 msgid "Rename"
 msgstr "Renommer"
+
+#~ msgid "Demo"
+#~ msgstr "Démo"
+
+#~ msgid "Widget selection"
+#~ msgstr "Sélection du widget"
+
+#~ msgid "Double click anywhere to add a widget"
+#~ msgstr "Effectuez un double-clic où vous voulez pour ajouter un widget"
+
+#~ msgid ""
+#~ "Change font size: ctrl +/-\n"
+#~ "save and close app: ctrl q/w"
+#~ msgstr ""
+#~ "Modifier la taille de la police : Ctrl +/-\n"
+#~ "Enregistrer et fermer l'application : Ctrl Q/W"
+
+#~ msgid ""
+#~ "Right click on widget for\n"
+#~ "context menu.\n"
+#~ "(when 'grabbing cursor' appears)"
+#~ msgstr ""
+#~ "Effectuez un clic droit sur un widget\n"
+#~ "pour afficher le menu contextuel.\n"
+#~ "(lorsque le curseur « main » apparaît)"
+
+#~ msgid "Create new board"
+#~ msgstr "Créer un nouveau tableau"
+
+#~ msgid "Right click to edit"
+#~ msgstr "Effectuez un clic droit pour modifier"
