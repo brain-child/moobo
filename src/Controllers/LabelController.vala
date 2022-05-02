@@ -32,7 +32,7 @@ public class LabelController {
     private bool on_key_press (Gdk.EventKey event) {
         var key_name = event.state.to_string ();
 
-        if (key_name == "GDK_CONTROL_MASK" && event.keyval == Gdk.Key.plus || event.keyval == Gdk.Key.equal) {
+        if (key_name == "GDK_CONTROL_MASK" && (event.keyval == Gdk.Key.plus || event.keyval == Gdk.Key.equal)) {
             movable.font_size += 10;
             set_font_size (movable.font_size);
         }
