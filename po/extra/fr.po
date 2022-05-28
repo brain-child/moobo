@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-10 23:21+0100\n"
+"POT-Creation-Date: 2022-05-28 21:00+0200\n"
 "PO-Revision-Date: 2021-11-19 21:06+0100\n"
 "Last-Translator: Nathan Bonnemains (@NathanBnm)\n"
 "Language-Team: none\n"
@@ -43,58 +43,55 @@ msgid "Visualize your ideas on moodboards"
 msgstr "Visualisez vos idées sur des moodboards"
 
 #: data/com.github.brain_child.moobo.appdata.xml.in:10
-msgid ""
-"Visualize your ideas on moodboards. Use different widgets which you can and "
-"drag, stack, scale or color."
+msgid "Use different widgets to visualize your thoughts."
 msgstr ""
-"Visualisez vos idées sur des moodboards. Utilisez différents widgets que "
-"vous pouvez déplacer, superposer, redimensionner et colorer."
 
 #: data/com.github.brain_child.moobo.appdata.xml.in:13
 msgid ""
-"⚠ NOTE: The potential of this app has not yet been reached. At the moment, "
-"the program is considered as proof of concept. Unexpected behavior may occur."
+"⚠ NOTE: The app is not finished. At this point, consider Moobo as proof of "
+"concept."
 msgstr ""
-"⚠ REMARQUE : Le potentiel de cette application n'a pas encore été atteint. "
-"Pour l'instant, l'application est une preuve de concept. Des comportements "
-"inattendus pourraient avoir lieu."
 
 #: data/com.github.brain_child.moobo.appdata.xml.in:22
 msgid "brain·​child"
 msgstr "brain·​child"
 
 #: data/com.github.brain_child.moobo.appdata.xml.in:42
+msgid "Add shortcuts for QWERTY and AZERTY keyboard layout"
+msgstr ""
+
+#: data/com.github.brain_child.moobo.appdata.xml.in:49
 msgid "Window size is calculated dynamically"
 msgstr ""
 
-#: data/com.github.brain_child.moobo.appdata.xml.in:43
+#: data/com.github.brain_child.moobo.appdata.xml.in:50
 msgid "Show shortcuts by pressing ESC"
 msgstr ""
 
-#: data/com.github.brain_child.moobo.appdata.xml.in:44
+#: data/com.github.brain_child.moobo.appdata.xml.in:51
 msgid "Rename board by pressing F2"
 msgstr ""
 
-#: data/com.github.brain_child.moobo.appdata.xml.in:45
+#: data/com.github.brain_child.moobo.appdata.xml.in:52
 msgid "Show placeholder when adding an image"
 msgstr ""
 
-#: data/com.github.brain_child.moobo.appdata.xml.in:46
+#: data/com.github.brain_child.moobo.appdata.xml.in:53
 msgid "Add French translation"
 msgstr ""
 
-#: data/com.github.brain_child.moobo.appdata.xml.in:47
+#: data/com.github.brain_child.moobo.appdata.xml.in:54
 msgid "Add Portuguese translation"
 msgstr ""
 
-#: data/com.github.brain_child.moobo.appdata.xml.in:48
+#: data/com.github.brain_child.moobo.appdata.xml.in:55
 msgid "Visual improvements"
 msgstr ""
 
-#: data/com.github.brain_child.moobo.appdata.xml.in:55
+#: data/com.github.brain_child.moobo.appdata.xml.in:62
 msgid "Fix productpage in AppCenter"
 msgstr "Correction de la page de l'application dans le Centre d'Applications"
 
-#: data/com.github.brain_child.moobo.appdata.xml.in:62
+#: data/com.github.brain_child.moobo.appdata.xml.in:69
 msgid "First release!"
 msgstr "Première version !"

@@ -8,10 +8,10 @@
 
     <description>
         <p>
-            Visualize your ideas on moodboards. Use different widgets which you can and drag, stack, scale or color.
+            Use different widgets to visualize your thoughts.
         </p>
         <p>
-            ⚠ NOTE: The potential of this app has not yet been reached. At the moment, the program is considered as proof of concept. Unexpected behavior may occur.
+            ⚠ NOTE: The app is not finished. At this point, consider Moobo as proof of concept.
         </p>
     </description>
 
@@ -36,6 +36,13 @@
     <content_rating type="oars-1.1" />
 
     <releases>
+        <release version="0.1.3" date="2022-05-28" urgency="medium">
+            <description>
+                <ul>
+                    <li>Add shortcuts for QWERTY and AZERTY keyboard layout</li>
+                </ul>
+            </description>
+        </release>
         <release version="0.1.2" date="2021-12-10" urgency="medium">
             <description>
                 <ul>
