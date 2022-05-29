@@ -4,7 +4,7 @@
 
 Use different widgets to visualize your thoughts.
 
-⚠ NOTE: Moobo is part of my bachelors degree. At this point, consider Moobo as proof of concept.
+⚠ NOTE: Moobo was developed as part of my bachelors degree. At this point, consider Moobo as proof of concept.
 
 [![Get it on AppCenter](https://appcenter.elementary.io/badge.svg)](https://appcenter.elementary.io/com.github.brain_child.moobo)
 
