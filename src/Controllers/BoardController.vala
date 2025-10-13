@@ -10,6 +10,7 @@ public class BoardController {
     public Window window { private set; get; }
 
     public RowController row_controller;
+    private LazyLoader.LazyLoadingManager? lazy_loader;
 
     public BoardController (Window window, BoardModel model) {
         this.window = window;
@@ -18,6 +19,9 @@ public class BoardController {
         this.overlay = board.overlay;
         this.row_controller = new RowController (this, "Board", model.color);
         row = row_controller.row;
+        
+        // Initialize lazy loading for performance
+        this.lazy_loader = new LazyLoader.LazyLoadingManager (this);
 
         row.focus_in_event.connect (on_focus_in);
         board.enter_notify_event.connect (on_enter_notify);
@@ -32,9 +36,20 @@ public class BoardController {
     public void changed_handler (Gee.ArrayList<BaseModel> widgets, string color, string title) {
         board.title = title;
 
+        // Clear existing lazy widgets
+        if (lazy_loader != null) {
+            lazy_loader.unload_all_widgets ();
+        }
+
+        // Add widgets using lazy loading for better performance
         foreach (var widget in widgets) {
-            var w = WidgetFactory.create_widget_from_string (widget.model, this, widget.x, widget.y, widget);
-            overlay.add_overlay (w);
+            if (lazy_loader != null) {
+                lazy_loader.add_widget (widget, widget.x, widget.y);
+            } else {
+                // Fallback to immediate loading if lazy loading is disabled
+                var w = WidgetFactory.create_widget_from_string (widget.model, this, widget.x, widget.y, widget);
+                overlay.add_overlay (w);
+            }
         }
         
         // Apply proper layering based on z_index
@@ -98,6 +113,15 @@ public class BoardController {
         window.board_header.title = board.title;
         if (window.deck.get_visible_child () != board) {
             window.deck.set_visible_child (board);
+        }
+        
+        // Update viewport for lazy loading when board becomes active
+        if (lazy_loader != null) {
+            int width, height;
+            board.get_size_request (out width, out height);
+            if (width <= 0) width = 800;
+            if (height <= 0) height = 600;
+            lazy_loader.update_viewport (0, 0, width, height);
         }
     }
 

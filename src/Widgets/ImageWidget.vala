@@ -51,13 +51,18 @@ public class ImageWidget : Movable {
         width = (int) (scale_factor * width);
         height = (int) (scale_factor * height);
 
-        try {
-            pixbuf = new Gdk.Pixbuf.from_file_at_size (path, width, height);
-        } catch (Error e) {
-            warning (e.message);
+        // Use image cache for better performance
+        var cache_manager = ImageCache.ImageCacheManager.get_instance ();
+        pixbuf = cache_manager.get_image (path, width, height);
+        
+        if (pixbuf == null) {
+            warning ("Failed to load image from cache: %s", path);
+            // Create a placeholder
+            pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.RGB, false, 8, width, height);
+            pixbuf.fill (0x80808080u);
         }
+        
         image = new Gtk.Image.from_pixbuf (pixbuf);
-
         add (image);
     }
     

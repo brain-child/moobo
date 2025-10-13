@@ -125,19 +125,15 @@ public class ImageController : WidgetController {
             return;
         }
 
-        // Load the original image and scale it to avoid quality degradation
-        try {
-            var original_pixbuf = new Gdk.Pixbuf.from_file (model.path);
-            if (original_pixbuf == null) {
-                warning ("Failed to load image: %s", model.path);
-                show_missing_image_placeholder ();
-                return;
-            }
-            
-            movable.pixbuf = original_pixbuf.scale_simple (scaled_width, scaled_height, Gdk.InterpType.HYPER);
-            movable.image.pixbuf = movable.pixbuf;
-        } catch (Error e) {
-            warning ("Failed to load image %s: %s", model.path, e.message);
+        // Use image cache for better performance
+        var cache_manager = ImageCache.ImageCacheManager.get_instance ();
+        var pixbuf = cache_manager.get_image (model.path, scaled_width, scaled_height);
+        
+        if (pixbuf != null) {
+            movable.pixbuf = pixbuf;
+            movable.image.pixbuf = pixbuf;
+        } else {
+            warning ("Failed to load image from cache: %s", model.path);
             show_missing_image_placeholder ();
         }
     }
@@ -240,17 +236,15 @@ public class ImageController : WidgetController {
                 return;
             }
 
-            try {
-                var scaled_pixbuf = new Gdk.Pixbuf.from_file_at_size (model.path, new_width, new_height);
-                if (scaled_pixbuf != null) {
-                    movable.image.pixbuf = scaled_pixbuf;
-                    model.scale_factor = scale_val;
-                } else {
-                    warning ("Failed to create scaled image");
-                    show_missing_image_placeholder ();
-                }
-            } catch (Error e) {
-                warning ("Failed to scale image %s: %s", model.path, e.message);
+            // Use image cache for better performance
+            var cache_manager = ImageCache.ImageCacheManager.get_instance ();
+            var scaled_pixbuf = cache_manager.get_image (model.path, new_width, new_height);
+            
+            if (scaled_pixbuf != null) {
+                movable.image.pixbuf = scaled_pixbuf;
+                model.scale_factor = scale_val;
+            } else {
+                warning ("Failed to get scaled image from cache");
                 show_missing_image_placeholder ();
             }
         }
