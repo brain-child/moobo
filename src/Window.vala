@@ -168,4 +168,18 @@ public class Window : Hdy.ApplicationWindow {
         }
     }
 
+    public void move_selected_widget_to_foreground () {
+        var active_board = (Board) deck.get_visible_child ();
+        if (active_board != null && active_board.controller.selected_widget != null) {
+            active_board.controller.move_widget_to_foreground (active_board.controller.selected_widget);
+        }
+    }
+
+    public void move_selected_widget_to_background () {
+        var active_board = (Board) deck.get_visible_child ();
+        if (active_board != null && active_board.controller.selected_widget != null) {
+            active_board.controller.move_widget_to_background (active_board.controller.selected_widget);
+        }
+    }
+
 }

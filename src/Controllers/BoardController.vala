@@ -5,6 +5,8 @@ public class BoardController {
     public BoardModel model { private set; get; }
     public Gtk.Overlay overlay { private set; get; }
     public Movable selected_widget { set; get; }
+    private int selection_z_index = 10000; // High value for selected widgets
+    private int original_z_index = 0; // Store original z_index of selected widget
     public Window window { private set; get; }
 
     public RowController row_controller;
@@ -34,6 +36,10 @@ public class BoardController {
             var w = WidgetFactory.create_widget_from_string (widget.model, this, widget.x, widget.y, widget);
             overlay.add_overlay (w);
         }
+        
+        // Apply proper layering based on z_index
+        update_widget_layering ();
+        
         row.display_name_label.label = title;
         set_color (color);
     }
@@ -53,6 +59,9 @@ public class BoardController {
     private bool on_button_press (Gdk.EventButton event) {
         board.grab_focus ();
         board.revealer.reveal_child = false;
+        
+        // Deselect any previously selected widget
+        deselect_widget ();
 
         if (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS) {
             var selection = window.fab_selection;
@@ -65,6 +74,18 @@ public class BoardController {
 
             widget.rel_pos_x = widget.margin_start = x;
             widget.rel_pos_y = widget.margin_top = y;
+
+            // Set z_index for new widget to be on top
+            BaseModel widget_model = get_widget_model (widget);
+            if (widget_model != null) {
+                int max_z_index = 0;
+                foreach (var model_widget in model.widgets) {
+                    if (model_widget.z_index > max_z_index) {
+                        max_z_index = model_widget.z_index;
+                    }
+                }
+                widget_model.z_index = max_z_index + 1;
+            }
 
             overlay.add_overlay (widget);
             WidgetFactory.focus_widget (widget);
@@ -114,6 +135,122 @@ public class BoardController {
         }
         unowned Gtk.StyleContext style_context = row.source_color.get_style_context ();
         style_context.add_provider (style_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+    }
+
+    public void move_widget_to_foreground (Movable widget) {
+        // Find the highest z_index among all widgets (excluding selection z_index)
+        int max_z_index = 0;
+        foreach (var model in model.widgets) {
+            if (model.z_index > max_z_index && model.z_index < selection_z_index) {
+                max_z_index = model.z_index;
+            }
+        }
+        
+        // Set the widget's z_index to be higher than all others
+        BaseModel widget_model = get_widget_model (widget);
+        if (widget_model != null) {
+            widget_model.z_index = max_z_index + 1;
+            
+            // If this widget is currently selected, update the original_z_index too
+            if (selected_widget == widget) {
+                original_z_index = widget_model.z_index;
+            }
+            
+            update_widget_layering ();
+        }
+    }
+
+    public void move_widget_to_background (Movable widget) {
+        // Find the lowest z_index among all widgets (excluding selection z_index)
+        int min_z_index = 0;
+        foreach (var model in model.widgets) {
+            if (model.z_index < min_z_index && model.z_index < selection_z_index) {
+                min_z_index = model.z_index;
+            }
+        }
+        
+        // Set the widget's z_index to be lower than all others
+        BaseModel widget_model = get_widget_model (widget);
+        if (widget_model != null) {
+            widget_model.z_index = min_z_index - 1;
+            
+            // If this widget is currently selected, update the original_z_index too
+            if (selected_widget == widget) {
+                original_z_index = widget_model.z_index;
+            }
+            
+            update_widget_layering ();
+        }
+    }
+
+    private BaseModel? get_widget_model (Movable widget) {
+        if (widget is TextWidget) {
+            var text_widget = widget as TextWidget;
+            return text_widget.controller.model;
+        } else if (widget is LabelWidget) {
+            var label_widget = widget as LabelWidget;
+            return label_widget.controller.model;
+        } else if (widget is ImageWidget) {
+            var image_widget = widget as ImageWidget;
+            return image_widget.controller.model;
+        }
+        return null;
+    }
+
+    public void select_widget (Movable widget) {
+        // Deselect previous widget if any
+        if (selected_widget != null && selected_widget != widget) {
+            deselect_widget ();
+        }
+        
+        // Select new widget
+        selected_widget = widget;
+        
+        // Store original z_index and temporarily bring to foreground
+        BaseModel widget_model = get_widget_model (widget);
+        if (widget_model != null) {
+            original_z_index = widget_model.z_index;
+            widget_model.z_index = selection_z_index;
+            update_widget_layering ();
+        }
+    }
+    
+    public void deselect_widget () {
+        if (selected_widget != null) {
+            // Restore original z_index for deselected widget
+            BaseModel widget_model = get_widget_model (selected_widget);
+            if (widget_model != null) {
+                widget_model.z_index = original_z_index;
+                update_widget_layering ();
+            }
+            selected_widget = null;
+        }
+    }
+
+    private void update_widget_layering () {
+        // Sort widgets by z_index and reorder them in the overlay
+        var sorted_widgets = new Gee.ArrayList<Movable> ();
+        
+        // Get all movable widgets from the overlay
+        var children = overlay.get_children ();
+        foreach (var child in children) {
+            if (child is Movable) {
+                sorted_widgets.add ((Movable) child);
+            }
+        }
+        
+        // Sort by z_index (ascending order - lower z_index first)
+        sorted_widgets.sort ((a, b) => {
+            BaseModel? model_a = get_widget_model (a);
+            BaseModel? model_b = get_widget_model (b);
+            if (model_a == null || model_b == null) return 0;
+            return model_a.z_index - model_b.z_index;
+        });
+        
+        // Reorder widgets in the overlay
+        foreach (var widget in sorted_widgets) {
+            overlay.reorder_overlay (widget, -1);
+        }
     }
 
 }

@@ -46,6 +46,14 @@ public class Application : Gtk.Application {
         add_action (help_action);
         set_accels_for_action ("app.help", {"Escape"});
 
+        var move_to_foreground_action = new SimpleAction ("move-to-foreground", null);
+        add_action (move_to_foreground_action);
+        set_accels_for_action ("app.move-to-foreground", {"bracketright"});
+
+        var move_to_background_action = new SimpleAction ("move-to-background", null);
+        add_action (move_to_background_action);
+        set_accels_for_action ("app.move-to-background", {"bracketleft"});
+
         add_window (window);
         window.show_all ();
 
@@ -60,6 +68,14 @@ public class Application : Gtk.Application {
 
         help_action.activate.connect (() => {
             help_window (window).show_all ();
+        });
+
+        move_to_foreground_action.activate.connect (() => {
+            window.move_selected_widget_to_foreground ();
+        });
+
+        move_to_background_action.activate.connect (() => {
+            window.move_selected_widget_to_background ();
         });
     }
 
@@ -143,6 +159,10 @@ public class Application : Gtk.Application {
         shortcuts.attach (new Granite.AccelLabel ("", "<Ctrl>plus"){ halign = Gtk.Align.START }, 2, 7);
         shortcuts.attach (new Gtk.Label (_("Decrease font size:")){ halign = Gtk.Align.END }, 1, 8);
         shortcuts.attach (new Granite.AccelLabel ("", "<Ctrl>minus"){ halign = Gtk.Align.START }, 2, 8);
+        shortcuts.attach (new Gtk.Label (_("Move to foreground:")){ halign = Gtk.Align.END }, 1, 9);
+        shortcuts.attach (new Granite.AccelLabel ("", "]"){ halign = Gtk.Align.START }, 2, 9);
+        shortcuts.attach (new Gtk.Label (_("Move to background:")){ halign = Gtk.Align.END }, 1, 10);
+        shortcuts.attach (new Granite.AccelLabel ("", "["){ halign = Gtk.Align.START }, 2, 10);
 
         layout.add (shortcuts);
         shortcut_window.add (layout);

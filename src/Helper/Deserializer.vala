@@ -58,12 +58,19 @@ namespace Deserializer {
         var name = node.get_string_member ("model");
         var widget_type = WidgetFactory.get_widget_type_from_string (name);
         
+        // Get z_index with default value of 0 if not present
+        int z_index = 0;
+        if (node.has_member ("z-index")) {
+            z_index = (int) node.get_int_member ("z-index");
+        }
+        
         BaseModel model = null;
         switch (widget_type) {
             case WidgetFactory.WidgetType.TEXT:
                 model = new TextModel () {
                     x = (int) node.get_int_member ("x"),
                     y = (int) node.get_int_member ("y"),
+                    z_index = z_index,
                     font_size = (int) node.get_int_member ("font-size"),
                     content = node.get_string_member ("content")
                 };
@@ -72,6 +79,7 @@ namespace Deserializer {
                 model = new LabelModel () {
                     x = (int) node.get_int_member ("x"),
                     y = (int) node.get_int_member ("y"),
+                    z_index = z_index,
                     font_size = (int) node.get_int_member ("font-size"),
                     content = node.get_string_member ("content"),
                     color = node.get_string_member ("color")
@@ -81,6 +89,7 @@ namespace Deserializer {
                 model = new ImageModel () {
                     x = (int) node.get_int_member ("x"),
                     y = (int) node.get_int_member ("y"),
+                    z_index = z_index,
                     path = node.get_string_member ("path"),
                     scale_factor = node.get_double_member ("scale-factor"),
                 };

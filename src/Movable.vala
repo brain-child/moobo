@@ -142,8 +142,8 @@ public abstract class Movable : Gtk.EventBox {
         abs_pos_x = (int) event.x_root;
         abs_pos_y = (int) event.y_root;
 
-        overlay.reorder_overlay (widget, -2);
-        controller.selected_widget = this;
+        // Use the controller's selection system to avoid overlap
+        controller.select_widget (this);
         return true;
     }
 
