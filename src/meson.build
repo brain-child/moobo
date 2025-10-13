@@ -13,6 +13,7 @@ sources = files(
 
     'Helper/Colors.vala',
     'Helper/Constants.vala',
+    'Helper/ErrorHandler.vala',
     'Helper/Serializer.vala',
     'Helper/Deserializer.vala',
     'Helper/WidgetFactory.vala',

@@ -138,27 +138,55 @@ public class Window : Hdy.ApplicationWindow {
     }
 
     private void load_boards () {
-        var list = Deserializer.from_json ();
-        if (list.size == 0) {
+        try {
+            var list = Deserializer.from_json ();
+            if (list.size == 0) {
+                create_new_board ();
+            } else {
+                foreach (var model in list) {
+                    create_new_board (model);
+                }
+            }
+        } catch (Error e) {
+            warning ("Failed to load boards: %s", e.message);
+            
+            // Show user-friendly error message
+            ErrorHandler.show_error_dialog (
+                this,
+                _("Failed to Load Boards"),
+                _("Could not load your saved boards. A new board has been created."),
+                _("Error details: %s").printf (e.message)
+            );
+            
+            // Create a default board
             create_new_board ();
-        }
-        foreach (var model in list) {
-            create_new_board (model);
         }
     }
 
     public void save () {
-        int x, y;
-        get_position (out x, out y);
+        try {
+            int x, y;
+            get_position (out x, out y);
 
-        settings.set_int ("win-x", x);
-        settings.set_int ("win-y", y);
+            settings.set_int ("win-x", x);
+            settings.set_int ("win-y", y);
 
-        var active_board = (Board) deck.get_visible_child ();
-        if (active_board != null) {
-            active_board.controller.model.is_active = true;
+            var active_board = (Board) deck.get_visible_child ();
+            if (active_board != null) {
+                active_board.controller.model.is_active = true;
+            }
+            Serializer.to_json (deck.get_children ());
+        } catch (Error e) {
+            warning ("Failed to save boards: %s", e.message);
+            
+            // Show user-friendly error message
+            ErrorHandler.show_error_dialog (
+                this,
+                _("Failed to Save Boards"),
+                _("Could not save your boards. Your changes may be lost."),
+                _("Error details: %s").printf (e.message)
+            );
         }
-        Serializer.to_json (deck.get_children ());
     }
 
     public void rename_selected_board () {
