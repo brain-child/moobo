@@ -30,7 +30,7 @@ public class Application : Gtk.Application {
         });
 
         var window = new Window (this) {
-            resizable = false,
+            resizable = true,
         };
         calc_window_size_from_screen_resolution (window);
 
@@ -71,7 +71,16 @@ public class Application : Gtk.Application {
         var width = (int) (rect.width * Const.WIN_SCALE_X);
         var height = (int) (rect.height * Const.WIN_SCALE_Y);
 
-        window.set_size_request (width, height);
+        // Ensure minimum size
+        width = int.max (width, Const.WIN_MIN_WIDTH);
+        height = int.max (height, Const.WIN_MIN_HEIGHT);
+
+        // Use set_default_size instead of set_size_request to allow resizing
+        window.set_default_size (width, height);
+        window.set_geometry_hints (null, Gdk.Geometry () {
+            min_width = Const.WIN_MIN_WIDTH,
+            min_height = Const.WIN_MIN_HEIGHT
+        }, Gdk.WindowHints.MIN_SIZE);
     }
 
     private Hdy.Window help_window (Hdy.ApplicationWindow main_window) {

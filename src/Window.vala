@@ -70,7 +70,7 @@ public class Window : Hdy.ApplicationWindow {
 
         var label = new Gtk.Label (_("Boards")) {
             halign = Gtk.Align.START,
-            margin_start = 12
+            margin_start = 8
         };
         label.get_style_context ().add_class (Granite.STYLE_CLASS_H4_LABEL);
 
