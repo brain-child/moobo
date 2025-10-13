@@ -255,13 +255,31 @@ public class Window : Hdy.ApplicationWindow {
     public void add_text_widget () {
         var active_board = (Board) deck.get_visible_child ();
         if (active_board != null) {
-            // Get the center of the board
+            // Get current cursor position relative to the window
+            int x, y;
+            get_pointer (out x, out y);
+            
+            // Convert window coordinates to board coordinates
+            int board_x, board_y;
+            if (!translate_coordinates (active_board, x, y, out board_x, out board_y)) {
+                // Fallback to center if translation fails
+                int board_width = active_board.get_allocated_width ();
+                int board_height = active_board.get_allocated_height ();
+                board_x = board_width > 0 ? board_width / 2 : 400;
+                board_y = board_height > 0 ? board_height / 2 : 300;
+            }
+            
+            x = board_x;
+            y = board_y;
+            
+            // Ensure coordinates are within board bounds
             int board_width = active_board.get_allocated_width ();
             int board_height = active_board.get_allocated_height ();
             
-            // If board size is not available, use default center position
-            int x = board_width > 0 ? board_width / 2 : 400;
-            int y = board_height > 0 ? board_height / 2 : 300;
+            if (x < 0) x = 0;
+            if (y < 0) y = 0;
+            if (x >= board_width) x = board_width - 1;
+            if (y >= board_height) y = board_height - 1;
             
             // Create text model
             var text_model = new TextModel () {
