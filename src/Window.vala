@@ -257,7 +257,15 @@ public class Window : Hdy.ApplicationWindow {
         if (active_board != null) {
             // Get current cursor position relative to the window
             int x, y;
-            get_pointer (out x, out y);
+            var display = get_display ();
+            var seat = display.get_default_seat ();
+            var pointer = seat.get_pointer ();
+            var window = get_window ();
+            if (window != null) {
+                window.get_device_position (pointer, out x, out y, null);
+            } else {
+                x = y = 0; // Fallback
+            }
             
             // Convert window coordinates to board coordinates
             int board_x, board_y;
@@ -316,7 +324,15 @@ public class Window : Hdy.ApplicationWindow {
         if (active_board != null) {
             // Get current cursor position relative to the window
             int x, y;
-            get_pointer (out x, out y);
+            var display = get_display ();
+            var seat = display.get_default_seat ();
+            var pointer = seat.get_pointer ();
+            var window = get_window ();
+            if (window != null) {
+                window.get_device_position (pointer, out x, out y, null);
+            } else {
+                x = y = 0; // Fallback
+            }
             
             // Convert window coordinates to board coordinates
             int board_x, board_y;

@@ -224,7 +224,7 @@ namespace Deserializer {
                     
                     // Validate image file exists
                     if (path != "" && !ErrorHandler.validate_file_path (path)) {
-                        warning ("Image file not found: %s, skipping widget", path);
+                        debug ("Image file not found: %s, skipping widget", path);
                         return null;
                     }
                     

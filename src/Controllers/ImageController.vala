@@ -120,7 +120,7 @@ public class ImageController : WidgetController {
 
         // Validate file exists before loading
         if (!ErrorHandler.validate_file_path (model.path)) {
-            warning ("Image file not found: %s", model.path);
+            debug ("Image file not found: %s", model.path);
             show_missing_image_placeholder ();
             return;
         }
@@ -231,7 +231,7 @@ public class ImageController : WidgetController {
 
             // Validate file exists before scaling
             if (!ErrorHandler.validate_file_path (model.path)) {
-                warning ("Image file not found during scaling: %s", model.path);
+                debug ("Image file not found during scaling: %s", model.path);
                 show_missing_image_placeholder ();
                 return;
             }

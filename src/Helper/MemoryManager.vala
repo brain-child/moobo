@@ -69,16 +69,29 @@ namespace MemoryManager {
         private int64 get_current_memory_usage () {
             try {
                 var file = File.new_for_path ("/proc/self/status");
+                if (!file.query_exists ()) {
+                    return 0;
+                }
+                
                 var stream = file.read ();
                 var data_stream = new DataInputStream (stream);
-                string line;
+                string? line;
                 
                 while ((line = data_stream.read_line (null)) != null) {
+                    // Additional null check for safety
+                    if (line == null) {
+                        continue;
+                    }
+                    
                     if (line.has_prefix ("VmRSS:")) {
-                        // Extract memory usage in KB
-                        var parts = line.split (" ");
-                        if (parts.length >= 2) {
-                            return int64.parse (parts[1]) * 1024; // Convert to bytes
+                        // Extract memory usage in KB - use more robust parsing
+                        var trimmed_line = line.strip ();
+                        var space_index = trimmed_line.index_of_char (' ');
+                        if (space_index > 0) {
+                            var memory_str = trimmed_line.substring (space_index + 1).strip ();
+                            if (memory_str != "") {
+                                return int64.parse (memory_str) * 1024; // Convert to bytes
+                            }
                         }
                     }
                 }
