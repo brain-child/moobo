@@ -311,4 +311,63 @@ public class Window : Hdy.ApplicationWindow {
         }
     }
 
+    public void add_label_widget () {
+        var active_board = (Board) deck.get_visible_child ();
+        if (active_board != null) {
+            // Get current cursor position relative to the window
+            int x, y;
+            get_pointer (out x, out y);
+            
+            // Convert window coordinates to board coordinates
+            int board_x, board_y;
+            if (!translate_coordinates (active_board, x, y, out board_x, out board_y)) {
+                // Fallback to center if translation fails
+                int board_width = active_board.get_allocated_width ();
+                int board_height = active_board.get_allocated_height ();
+                board_x = board_width > 0 ? board_width / 2 : 400;
+                board_y = board_height > 0 ? board_height / 2 : 300;
+            }
+            
+            x = board_x;
+            y = board_y;
+            
+            // Ensure coordinates are within board bounds
+            int board_width = active_board.get_allocated_width ();
+            int board_height = active_board.get_allocated_height ();
+            
+            if (x < 0) x = 0;
+            if (y < 0) y = 0;
+            if (x >= board_width) x = board_width - 1;
+            if (y >= board_height) y = board_height - 1;
+            
+            // Create label model
+            var label_model = new LabelModel () {
+                x = x,
+                y = y
+            };
+            
+            // Create label controller and widget
+            var label_controller = new LabelController (active_board.controller, x, y, label_model);
+            var label_widget = label_controller.get_movable ();
+            
+            // Add to model
+            WidgetFactory.add_widget_to_model (label_widget, active_board.controller.model.widgets);
+            
+            // Set z_index for new widget to be on top
+            int max_z_index = 0;
+            foreach (var model_widget in active_board.controller.model.widgets) {
+                if (model_widget.z_index > max_z_index) {
+                    max_z_index = model_widget.z_index;
+                }
+            }
+            label_model.z_index = max_z_index + 1;
+            
+            // Add to overlay
+            active_board.overlay.add_overlay (label_widget);
+            
+            // Focus the new widget
+            WidgetFactory.focus_widget (label_widget);
+        }
+    }
+
 }
