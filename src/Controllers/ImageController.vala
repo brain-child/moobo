@@ -83,7 +83,14 @@ public class ImageController : WidgetController {
         var scaled_width = (int) (width * model.scale_factor);
         var scaled_height = (int) (height * model.scale_factor);
 
-        movable.pixbuf = movable.pixbuf.scale_simple (scaled_width, scaled_height, Gdk.InterpType.HYPER);
+        // Load the original image and scale it to avoid quality degradation
+        try {
+            var original_pixbuf = new Gdk.Pixbuf.from_file (model.path);
+            movable.pixbuf = original_pixbuf.scale_simple (scaled_width, scaled_height, Gdk.InterpType.HYPER);
+            movable.image.pixbuf = movable.pixbuf;
+        } catch (Error e) {
+            warning (e.message);
+        }
     }
 
     private string copy_file (File source_file) {

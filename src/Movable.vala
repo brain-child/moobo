@@ -26,6 +26,7 @@ public abstract class Movable : Gtk.EventBox {
         button_press_event.connect (on_button_press);
         button_release_event.connect (on_button_release);
         enter_notify_event.connect (on_enter_notify);
+        motion_notify_event.connect (on_motion_notify_hover);
 
         show_all ();
     }
@@ -38,6 +39,19 @@ public abstract class Movable : Gtk.EventBox {
             grab_focus ();
             var image_widget = widget as ImageWidget;
             image_widget.grab_focus ();
+            
+            // Check if we're clicking on a resize handle
+            if (event.button == 1) {
+                var resize_handle = image_widget.get_resize_handle_at_position (event.x, event.y);
+                if (resize_handle != ImageWidget.ResizeHandle.NONE) {
+                    image_widget.start_resize (resize_handle, event.x, event.y);
+                    motion_notify_event.connect (on_motion_notify);
+                    var display = get_display ();
+                    var cursor = new Gdk.Cursor.from_name (display, image_widget.get_cursor_name_for_handle (resize_handle));
+                    get_window ().set_cursor (cursor);
+                    return true;
+                }
+            }
         }
         
         WidgetFactory.reorder_widget_in_model (this, widgets);
@@ -156,6 +170,15 @@ public abstract class Movable : Gtk.EventBox {
 
         widget.set_opacity (1);
 
+        // Handle resize end for image widgets
+        if (widget is ImageWidget) {
+            var image_widget = widget as ImageWidget;
+            if (image_widget.get_is_resizing ()) {
+                image_widget.end_resize ();
+                return false;
+            }
+        }
+
         double dx = event.x_root - abs_pos_x;
         double dy = event.y_root - abs_pos_y;
 
@@ -196,6 +219,18 @@ public abstract class Movable : Gtk.EventBox {
         widget.set_opacity (0.7);
 
         var display = get_display ();
+        
+        // Handle resize for image widgets
+        if (widget is ImageWidget) {
+            var image_widget = widget as ImageWidget;
+            if (image_widget.get_is_resizing ()) {
+                image_widget.update_resize (event.x, event.y);
+                var cursor = new Gdk.Cursor.from_name (display, image_widget.get_cursor_name_for_handle (image_widget.current_handle));
+                get_window ().set_cursor (cursor);
+                return true;
+            }
+        }
+        
         var cursor = new Gdk.Cursor.from_name (display, "grabbing");
         get_window ().set_cursor (cursor);
 
@@ -225,6 +260,19 @@ public abstract class Movable : Gtk.EventBox {
         var cursor = new Gdk.Cursor.from_name (display, "grab");
         get_window ().set_cursor (cursor);
         return true;
+    }
+    
+    private bool on_motion_notify_hover (Gtk.Widget widget, Gdk.EventMotion event) {
+        if (widget is ImageWidget) {
+            var image_widget = widget as ImageWidget;
+            if (!image_widget.get_is_resizing ()) {
+                var resize_handle = image_widget.get_resize_handle_at_position (event.x, event.y);
+                var display = get_display ();
+                var cursor = new Gdk.Cursor.from_name (display, image_widget.get_cursor_name_for_handle (resize_handle));
+                get_window ().set_cursor (cursor);
+            }
+        }
+        return false;
     }
 
 }
