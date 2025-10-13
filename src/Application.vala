@@ -58,6 +58,10 @@ public class Application : Gtk.Application {
         add_action (add_image_action);
         set_accels_for_action ("app.add-image", {"<Control>o"});
 
+        var add_text_action = new SimpleAction ("add-text", null);
+        add_action (add_text_action);
+        set_accels_for_action ("app.add-text", {"<Control>t"});
+
         add_window (window);
         window.show_all ();
 
@@ -84,6 +88,10 @@ public class Application : Gtk.Application {
 
         add_image_action.activate.connect (() => {
             window.add_image_widget ();
+        });
+
+        add_text_action.activate.connect (() => {
+            window.add_text_widget ();
         });
     }
 
@@ -173,6 +181,8 @@ public class Application : Gtk.Application {
         shortcuts.attach (new Granite.AccelLabel ("", "["){ halign = Gtk.Align.START }, 2, 10);
         shortcuts.attach (new Gtk.Label (_("Add image widget:")){ halign = Gtk.Align.END }, 1, 11);
         shortcuts.attach (new Granite.AccelLabel ("", "<Ctrl>O"){ halign = Gtk.Align.START }, 2, 11);
+        shortcuts.attach (new Gtk.Label (_("Add text widget:")){ halign = Gtk.Align.END }, 1, 12);
+        shortcuts.attach (new Granite.AccelLabel ("", "<Ctrl>T"){ halign = Gtk.Align.START }, 2, 12);
 
         layout.add (shortcuts);
         shortcut_window.add (layout);

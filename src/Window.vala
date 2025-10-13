@@ -252,4 +252,45 @@ public class Window : Hdy.ApplicationWindow {
         }
     }
 
+    public void add_text_widget () {
+        var active_board = (Board) deck.get_visible_child ();
+        if (active_board != null) {
+            // Get the center of the board
+            int board_width = active_board.get_allocated_width ();
+            int board_height = active_board.get_allocated_height ();
+            
+            // If board size is not available, use default center position
+            int x = board_width > 0 ? board_width / 2 : 400;
+            int y = board_height > 0 ? board_height / 2 : 300;
+            
+            // Create text model
+            var text_model = new TextModel () {
+                x = x,
+                y = y
+            };
+            
+            // Create text controller and widget
+            var text_controller = new TextController (active_board.controller, x, y, text_model);
+            var text_widget = text_controller.get_movable ();
+            
+            // Add to model
+            WidgetFactory.add_widget_to_model (text_widget, active_board.controller.model.widgets);
+            
+            // Set z_index for new widget to be on top
+            int max_z_index = 0;
+            foreach (var model_widget in active_board.controller.model.widgets) {
+                if (model_widget.z_index > max_z_index) {
+                    max_z_index = model_widget.z_index;
+                }
+            }
+            text_model.z_index = max_z_index + 1;
+            
+            // Add to overlay
+            active_board.overlay.add_overlay (text_widget);
+            
+            // Focus the new widget
+            WidgetFactory.focus_widget (text_widget);
+        }
+    }
+
 }
