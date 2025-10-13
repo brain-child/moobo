@@ -69,7 +69,8 @@ public class Window : Hdy.ApplicationWindow {
         actionbar_style_context.add_class (Gtk.STYLE_CLASS_FLAT);
 
         var label = new Gtk.Label (_("Boards")) {
-            halign = Gtk.Align.START
+            halign = Gtk.Align.START,
+            margin_start = 12
         };
         label.get_style_context ().add_class (Granite.STYLE_CLASS_H4_LABEL);
 

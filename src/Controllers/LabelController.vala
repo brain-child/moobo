@@ -1,8 +1,7 @@
-public class LabelController {
+public class LabelController : WidgetController {
 
     public LabelWidget movable { private set; get; }
     public LabelModel model { private set; get; }
-    private BoardController board_controller;
     private Gtk.Overlay overlay;
     private const string CSS = """
         .color {
@@ -13,7 +12,7 @@ public class LabelController {
     """;
 
     public LabelController (BoardController board_controller, int x, int y, LabelModel model = new LabelModel ()) {
-        this.board_controller = board_controller;
+        base (board_controller, x, y);
         this.overlay = board_controller.overlay;
         this.movable = new LabelWidget (this);
         this.model = model;
@@ -27,6 +26,22 @@ public class LabelController {
 
         set_font_size (movable.font_size);
         movable.handle_events (board_controller);
+    }
+
+    public override Movable get_movable () {
+        return movable;
+    }
+
+    public override BaseModel get_model () {
+        return model;
+    }
+
+    public override void handle_key_press (Gdk.EventKey event) {
+        on_key_press (event);
+    }
+
+    public override void handle_key_release () {
+        on_key_release ();
     }
 
     private bool on_key_press (Gdk.EventKey event) {
@@ -48,7 +63,7 @@ public class LabelController {
         return false;
     }
 
-    private void update_widget () {
+    public override void update_widget () {
         movable.rel_pos_x = movable.margin_start = model.x;
         movable.rel_pos_y = movable.margin_top = model.y;
         movable.buffer.text = model.content;

@@ -33,22 +33,21 @@ namespace Serializer {
         builder.set_member_name ("widgets");
         builder.begin_array ();
         foreach (var widget in widgets) {
-            BaseModel base_model = null;
-            switch (widget.model) {
-                case "TextWidget":
-                    base_model = widget as TextModel;
+            BaseModel base_model = widget;
+            var widget_type = WidgetFactory.get_widget_type_from_string (widget.model);
+            
+            switch (widget_type) {
+                case WidgetFactory.WidgetType.TEXT:
                     var text_model = base_model as TextModel;
                     text_model.content = text_model.content.strip ();
                     if (text_model.content == "") { continue; }
                     break;
-                case "LabelWidget":
-                    base_model = widget as LabelModel;
+                case WidgetFactory.WidgetType.LABEL:
                     var label_model = base_model as LabelModel;
                     label_model.content = label_model.content.strip ();
                     if (label_model.content == "") { continue; }
                     break;
-                case "ImageWidget":
-                    base_model = widget as ImageModel;
+                case WidgetFactory.WidgetType.IMAGE:
                     var image_model = base_model as ImageModel;
                     if (image_model.path == "") { continue; }
                     break;

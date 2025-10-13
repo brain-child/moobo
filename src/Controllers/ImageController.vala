@@ -1,15 +1,14 @@
-public class ImageController {
+public class ImageController : WidgetController {
 
     public ImageWidget movable { private set; get; }
     public ImageModel model { private set; get; }
 
-    private BoardController board_controller;
     private string app_dir = "%s/com.github.brain_child.moobo".printf (Environment.get_user_data_dir ());
     private int width;
     private int height;
 
     public ImageController (BoardController board_controller, int x, int y, ImageModel model = new ImageModel ()) {
-        this.board_controller = board_controller;
+        base (board_controller, x, y);
         this.movable = new ImageWidget (this);
         this.model = model;
 
@@ -61,7 +60,23 @@ public class ImageController {
         return file_path;
     }
 
-    private void update_widget () {
+    public override Movable get_movable () {
+        return movable;
+    }
+
+    public override BaseModel get_model () {
+        return model;
+    }
+
+    public override void handle_key_press (Gdk.EventKey event) {
+        // ImageController doesn't handle key events
+    }
+
+    public override void handle_key_release () {
+        // ImageController doesn't handle key events
+    }
+
+    public override void update_widget () {
         movable.rel_pos_x = movable.margin_start = model.x;
         movable.rel_pos_y = movable.margin_top = model.y;
 

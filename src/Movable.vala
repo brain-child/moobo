@@ -33,27 +33,14 @@ public abstract class Movable : Gtk.EventBox {
     private bool on_button_press (Gtk.Widget widget, Gdk.EventButton event) {
         can_focus = false;
 
-        if (widget is TextWidget) {
-            var text_widget = widget as TextWidget;
-            var model = text_widget.controller.model;
-            widgets.remove (model);
-            widgets.add (model);
-        }
-        else if (widget is LabelWidget) {
-            var label_widget = widget as LabelWidget;
-            var model = label_widget.controller.model;
-            widgets.remove (model);
-            widgets.add (model);
-        }
-        else if (widget is ImageWidget) {
+        if (widget is ImageWidget) {
             can_focus = true;
             grab_focus ();
             var image_widget = widget as ImageWidget;
             image_widget.grab_focus ();
-            var model = image_widget.controller.model;
-            widgets.remove (model);
-            widgets.add (model);
         }
+        
+        WidgetFactory.reorder_widget_in_model (this, widgets);
 
         if (event.button == 1) {
             motion_notify_event.connect (on_motion_notify);
@@ -124,18 +111,7 @@ public abstract class Movable : Gtk.EventBox {
 
             Gtk.MenuItem delete_item = new Gtk.MenuItem.with_label (_("Delete"));
             delete_item.activate.connect (() => {
-                if (widget is TextWidget) {
-                    var text_widget = widget as TextWidget;
-                    widgets.remove (text_widget.controller.model);
-                }
-                else if (widget is LabelWidget) {
-                    var label_widget = widget as LabelWidget;
-                    widgets.remove (label_widget.controller.model);
-                }
-                else if (widget is ImageWidget) {
-                    var image_widget = widget as ImageWidget;
-                    widgets.remove (image_widget.controller.model);
-                }
+                WidgetFactory.remove_widget_from_model (this, widgets);
                 this.destroy ();
             });
             menu.attach_to_widget (widget, null);
@@ -198,23 +174,19 @@ public abstract class Movable : Gtk.EventBox {
         rel_pos_x = (int) x;
         rel_pos_y = (int) y;
 
-        var type = widget.name;
-        switch (type) {
-            case "TextWidget":
-                var text_widget = widget as TextWidget;
-                text_widget.controller.model.x = rel_pos_x;
-                text_widget.controller.model.y = rel_pos_y;
-                break;
-            case "LabelWidget":
-                var label_widget = widget as LabelWidget;
-                label_widget.controller.model.x = rel_pos_x;
-                label_widget.controller.model.y = rel_pos_y;
-                break;
-            case "ImageWidget":
-                var image_widget = widget as ImageWidget;
-                image_widget.controller.model.x = rel_pos_x;
-                image_widget.controller.model.y = rel_pos_y;
-                break;
+        // Update model position for all widget types
+        if (widget is TextWidget) {
+            var text_widget = widget as TextWidget;
+            text_widget.controller.model.x = rel_pos_x;
+            text_widget.controller.model.y = rel_pos_y;
+        } else if (widget is LabelWidget) {
+            var label_widget = widget as LabelWidget;
+            label_widget.controller.model.x = rel_pos_x;
+            label_widget.controller.model.y = rel_pos_y;
+        } else if (widget is ImageWidget) {
+            var image_widget = widget as ImageWidget;
+            image_widget.controller.model.x = rel_pos_x;
+            image_widget.controller.model.y = rel_pos_y;
         }
 
         return false;

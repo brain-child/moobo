@@ -31,21 +31,7 @@ public class BoardController {
         board.title = title;
 
         foreach (var widget in widgets) {
-            Gtk.Widget w = null;
-            switch (widget.model) {
-                case "TextWidget":
-                    var controller = new TextController (this, widget.x, widget.y, (TextModel) widget);
-                    w = controller.movable;
-                    break;
-                case "LabelWidget":
-                    var controller = new LabelController (this, widget.x, widget.y, (LabelModel) widget);
-                    w = controller.movable;
-                    break;
-                case "ImageWidget":
-                    var controller = new ImageController (this, widget.x, widget.y, (ImageModel) widget);
-                    w = controller.movable;
-                    break;
-            }
+            var w = WidgetFactory.create_widget_from_string (widget.model, this, widget.x, widget.y, widget);
             overlay.add_overlay (w);
         }
         row.display_name_label.label = title;
@@ -73,41 +59,15 @@ public class BoardController {
 
             var x = (int) event.x;
             var y = (int) event.y;
-            Movable widget = null;
-
-            switch (selection.name ()) {
-                case "TextWidget":
-                    var controller = new TextController (this, x, y);
-                    model.widgets.add (controller.model);
-                    widget = controller.movable;
-                    break;
-                case "LabelWidget":
-                    var controller = new LabelController (this, x, y);
-                    model.widgets.add (controller.model);
-                    widget = controller.movable;
-                    break;
-                case "ImageWidget":
-                    var controller = new ImageController (this, x, y);
-                    model.widgets.add (controller.model);
-                    widget = controller.movable;
-                    break;
-            }
+            
+            var widget = WidgetFactory.create_widget_from_class (selection, this, x, y);
+            WidgetFactory.add_widget_to_model (widget, model.widgets);
 
             widget.rel_pos_x = widget.margin_start = x;
             widget.rel_pos_y = widget.margin_top = y;
 
             overlay.add_overlay (widget);
-
-            switch (selection.name ()) {
-                case "TextWidget":
-                    var text_widget = widget as TextWidget;
-                    text_widget.textview.grab_focus ();
-                    break;
-                case "LabelWidget":
-                    var label_widget = widget as LabelWidget;
-                    label_widget.textview.grab_focus ();
-                    break;
-            }
+            WidgetFactory.focus_widget (widget);
         }
         
         return true;

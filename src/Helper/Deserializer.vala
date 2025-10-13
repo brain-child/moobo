@@ -55,10 +55,12 @@ namespace Deserializer {
     }
 
     private BaseModel parse_widgets (Json.Object node) {
-        BaseModel model = null;
         var name = node.get_string_member ("model");
-        switch (name) {
-            case "TextWidget":
+        var widget_type = WidgetFactory.get_widget_type_from_string (name);
+        
+        BaseModel model = null;
+        switch (widget_type) {
+            case WidgetFactory.WidgetType.TEXT:
                 model = new TextModel () {
                     x = (int) node.get_int_member ("x"),
                     y = (int) node.get_int_member ("y"),
@@ -66,7 +68,7 @@ namespace Deserializer {
                     content = node.get_string_member ("content")
                 };
                 break;
-            case "LabelWidget":
+            case WidgetFactory.WidgetType.LABEL:
                 model = new LabelModel () {
                     x = (int) node.get_int_member ("x"),
                     y = (int) node.get_int_member ("y"),
@@ -75,7 +77,7 @@ namespace Deserializer {
                     color = node.get_string_member ("color")
                 };
                 break;
-            case "ImageWidget":
+            case WidgetFactory.WidgetType.IMAGE:
                 model = new ImageModel () {
                     x = (int) node.get_int_member ("x"),
                     y = (int) node.get_int_member ("y"),
