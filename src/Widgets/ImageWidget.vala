@@ -39,38 +39,8 @@ public class ImageWidget : Movable {
 
         int width;
         int height;
+        Gdk.Pixbuf.get_file_info (controller.model.path, out width, out height);
         var scale_factor = controller.model.scale_factor;
-
-        // Get image dimensions from base64 data or file path
-        if (controller.model.base64_data != "") {
-            try {
-                var pixbuf = controller.get_pixbuf_from_base64 (controller.model.base64_data);
-                if (pixbuf != null) {
-                    width = pixbuf.get_width ();
-                    height = pixbuf.get_height ();
-                } else {
-                    // Create a placeholder
-                    width = 200;
-                    height = 150;
-                    pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.RGB, false, 8, width, height);
-                    pixbuf.fill (0x80808080u);
-                }
-            } catch (Error e) {
-                warning ("Failed to get image dimensions from base64: %s", e.message);
-                width = 200;
-                height = 150;
-                pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.RGB, false, 8, width, height);
-                pixbuf.fill (0x80808080u);
-            }
-        } else if (controller.model.path != "") {
-            Gdk.Pixbuf.get_file_info (controller.model.path, out width, out height);
-        } else {
-            // Create a placeholder
-            width = 200;
-            height = 150;
-            pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.RGB, false, 8, width, height);
-            pixbuf.fill (0x80808080u);
-        }
 
         if (width * scale_factor > max_x) {
             scale_factor = ((double) max_x / width);
@@ -81,29 +51,15 @@ public class ImageWidget : Movable {
         width = (int) (scale_factor * width);
         height = (int) (scale_factor * height);
 
-        // Load the actual image
-        if (controller.model.base64_data != "") {
-            try {
-                var original_pixbuf = controller.get_pixbuf_from_base64 (controller.model.base64_data);
-                if (original_pixbuf != null) {
-                    pixbuf = original_pixbuf.scale_simple (width, height, Gdk.InterpType.BILINEAR);
-                }
-            } catch (Error e) {
-                warning ("Failed to load image from base64: %s", e.message);
-                pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.RGB, false, 8, width, height);
-                pixbuf.fill (0x80808080u);
-            }
-        } else if (controller.model.path != "") {
-            // Use image cache for better performance
-            var cache_manager = ImageCache.ImageCacheManager.get_instance ();
-            pixbuf = cache_manager.get_image (controller.model.path, width, height);
-            
-            if (pixbuf == null) {
-                warning ("Failed to load image from cache: %s", controller.model.path);
-                // Create a placeholder
-                pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.RGB, false, 8, width, height);
-                pixbuf.fill (0x80808080u);
-            }
+        // Use image cache for better performance
+        var cache_manager = ImageCache.ImageCacheManager.get_instance ();
+        pixbuf = cache_manager.get_image (controller.model.path, width, height);
+        
+        if (pixbuf == null) {
+            warning ("Failed to load image from cache: %s", controller.model.path);
+            // Create a placeholder
+            pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.RGB, false, 8, width, height);
+            pixbuf.fill (0x80808080u);
         }
         
         image = new Gtk.Image.from_pixbuf (pixbuf);
@@ -177,27 +133,7 @@ public class ImageWidget : Movable {
         
         // Get original image dimensions
         int orig_width, orig_height;
-        if (controller.model.base64_data != "") {
-            try {
-                var pixbuf = controller.get_pixbuf_from_base64 (controller.model.base64_data);
-                if (pixbuf != null) {
-                    orig_width = pixbuf.get_width ();
-                    orig_height = pixbuf.get_height ();
-                } else {
-                    orig_width = 200;
-                    orig_height = 150;
-                }
-            } catch (Error e) {
-                warning ("Failed to get image dimensions from base64 during resize: %s", e.message);
-                orig_width = 200;
-                orig_height = 150;
-            }
-        } else if (controller.model.path != "") {
-            Gdk.Pixbuf.get_file_info (controller.model.path, out orig_width, out orig_height);
-        } else {
-            orig_width = 200;
-            orig_height = 150;
-        }
+        Gdk.Pixbuf.get_file_info (controller.model.path, out orig_width, out orig_height);
         
         double new_scale_factor = resize_start_scale_factor;
         

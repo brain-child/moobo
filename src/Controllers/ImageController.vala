@@ -3,6 +3,7 @@ public class ImageController : WidgetController {
     public ImageWidget movable { private set; get; }
     public ImageModel model { private set; get; }
 
+    private string app_dir = "%s/com.github.brain_child.moobo".printf (Environment.get_user_data_dir ());
     private int width;
     private int height;
 
@@ -11,7 +12,7 @@ public class ImageController : WidgetController {
         this.movable = new ImageWidget (this);
         this.model = model;
 
-        if (model.base64_data == "" && model.path == "") {
+        if (model.path == "") {
             var placeholder = new Gtk.Image.from_icon_name ("image-x-generic", Gtk.IconSize.DIALOG) {
                 valign = Gtk.Align.START,
                 halign = Gtk.Align.START,
@@ -20,37 +21,11 @@ public class ImageController : WidgetController {
             };
             board_controller.overlay.add_overlay (placeholder);
             placeholder.show ();
-            var success = load_image_from_file ();
+            model.path = get_file ();
             board_controller.overlay.remove (placeholder);
-            
-            if (!success) {
-                movable.destroy ();
-                return;
-            }
         }
 
-        // Get image dimensions from either base64 data or file path
-        if (model.base64_data != "") {
-            try {
-                var pixbuf = get_pixbuf_from_base64 (model.base64_data);
-                if (pixbuf != null) {
-                    width = pixbuf.get_width ();
-                    height = pixbuf.get_height ();
-                } else {
-                    movable.destroy ();
-                    return;
-                }
-            } catch (Error e) {
-                warning ("Failed to get image dimensions from base64: %s", e.message);
-                movable.destroy ();
-                return;
-            }
-        } else if (model.path != "") {
-            Gdk.Pixbuf.get_file_info (model.path, out width, out height);
-        } else {
-            movable.destroy ();
-            return;
-        }
+        Gdk.Pixbuf.get_file_info (model.path, out width, out height);
 
         movable.init ();
         update_widget ();
@@ -58,7 +33,8 @@ public class ImageController : WidgetController {
         board_controller.board.scale.value_changed.connect (on_value_changed);
     }
 
-    public bool load_image_from_file () {
+    public string get_file () {
+        string file_path = "";
         var file_chooser = new Gtk.FileChooserNative (
             _("Select Image"),
             board_controller.window,
@@ -94,23 +70,25 @@ public class ImageController : WidgetController {
                     _("The selected file is not a valid image or cannot be read."),
                     _("Please select a valid image file (PNG, JPEG, GIF, etc.)")
                 );
-                return false;
+                movable.destroy ();
+                return "";
             }
             
-            // Convert image to base64
-            var success = encode_image_to_base64 (source_file);
-            if (!success) {
+            file_path = copy_file (source_file);
+            if (file_path == "") {
                 ErrorHandler.show_error_dialog (
                     board_controller.window,
                     _("Failed to Add Image"),
-                    _("Could not process the selected image file."),
+                    _("Could not copy the selected image file."),
                     _("Please check that you have permission to access the file and sufficient disk space.")
                 );
-                return false;
+                movable.destroy ();
+                return "";
             }
-            return true;
+        } else {
+            movable.destroy ();
         }
-        return false;
+        return file_path;
     }
 
     public override Movable get_movable () {
@@ -136,36 +114,22 @@ public class ImageController : WidgetController {
         var scaled_width = (int) (width * model.scale_factor);
         var scaled_height = (int) (height * model.scale_factor);
 
-        Gdk.Pixbuf? pixbuf = null;
+        // Validate file exists before loading
+        if (!ErrorHandler.validate_file_path (model.path)) {
+            debug ("Image file not found: %s", model.path);
+            show_missing_image_placeholder ();
+            return;
+        }
 
-        // Load image from base64 data if available
-        if (model.base64_data != "") {
-            try {
-                var original_pixbuf = get_pixbuf_from_base64 (model.base64_data);
-                if (original_pixbuf != null) {
-                    // Scale the pixbuf if needed
-                    if (scaled_width != original_pixbuf.get_width () || scaled_height != original_pixbuf.get_height ()) {
-                        pixbuf = original_pixbuf.scale_simple (scaled_width, scaled_height, Gdk.InterpType.BILINEAR);
-                    } else {
-                        pixbuf = original_pixbuf;
-                    }
-                }
-            } catch (Error e) {
-                warning ("Failed to load image from base64: %s", e.message);
-            }
-        }
-        // Fallback to file path for backward compatibility
-        else if (model.path != "" && ErrorHandler.validate_file_path (model.path)) {
-            // Use image cache for better performance
-            var cache_manager = ImageCache.ImageCacheManager.get_instance ();
-            pixbuf = cache_manager.get_image (model.path, scaled_width, scaled_height);
-        }
+        // Use image cache for better performance
+        var cache_manager = ImageCache.ImageCacheManager.get_instance ();
+        var pixbuf = cache_manager.get_image (model.path, scaled_width, scaled_height);
         
         if (pixbuf != null) {
             movable.pixbuf = pixbuf;
             movable.image.pixbuf = pixbuf;
         } else {
-            warning ("Failed to load image");
+            warning ("Failed to load image from cache: %s", model.path);
             show_missing_image_placeholder ();
         }
     }
@@ -205,7 +169,7 @@ public class ImageController : WidgetController {
         }
     }
 
-    private bool encode_image_to_base64 (File source_file) {
+    private string copy_file (File source_file) {
         try {
             // Validate source file exists and is readable
             if (!source_file.query_exists ()) {
@@ -217,53 +181,42 @@ public class ImageController : WidgetController {
                 throw new FileError.ACCES ("Cannot read source file: %s".printf (source_file.get_path ()));
             }
             
-            // Load the image file
-            var pixbuf = new Gdk.Pixbuf.from_file (source_file.get_path ());
-            if (pixbuf == null) {
-                throw new FileError.INVAL ("Failed to load image from file");
+            // Ensure app directory exists
+            var app_dir_file = File.new_for_path (app_dir);
+            if (!app_dir_file.query_exists ()) {
+                app_dir_file.make_directory_with_parents ();
             }
             
-            // Get image dimensions
-            width = pixbuf.get_width ();
-            height = pixbuf.get_height ();
+            var target_file_path = "%s/%d".printf (app_dir, (int) source_file.hash ());
+            var target_file = File.new_for_path (target_file_path);
             
-            // Save pixbuf to PNG format in memory
-            uint8[] buffer;
-            pixbuf.save_to_buffer (out buffer, "png");
+            // Check if file already exists
+            if (target_file.query_exists ()) {
+                // Verify the existing file is valid
+                try {
+                    var test_pixbuf = new Gdk.Pixbuf.from_file (target_file_path);
+                    if (test_pixbuf != null) {
+                        return target_file_path;
+                    }
+                } catch (Error e) {
+                    // Existing file is corrupted, remove it
+                    target_file.delete ();
+                }
+            }
             
-            // Encode to base64
-            var base64_string = Base64.encode (buffer);
-            model.base64_data = base64_string;
+            // Copy the file
+            source_file.copy (target_file, FileCopyFlags.OVERWRITE);
             
-            // Clear the path since we're now using base64
-            model.path = "";
+            // Verify the copy was successful
+            if (!target_file.query_exists ()) {
+                throw new FileError.IO ("Failed to copy file");
+            }
             
-            return true;
+            return target_file_path;
         } catch (Error e) {
-            warning ("Failed to encode image to base64 %s: %s", source_file.get_path (), e.message);
-            return false;
+            warning ("Failed to copy file %s: %s", source_file.get_path (), e.message);
+            return "";
         }
-    }
-    
-    public Gdk.Pixbuf? get_pixbuf_from_base64 (string base64_data) throws Error {
-        if (base64_data == "") {
-            throw new FileError.INVAL ("Empty base64 data");
-        }
-        
-        // Decode base64 data
-        uint8[] buffer = Base64.decode (base64_data);
-        
-        if (buffer == null || buffer.length == 0) {
-            throw new FileError.INVAL ("Failed to decode base64 data");
-        }
-        
-        // Create pixbuf from buffer
-        var pixbuf = new Gdk.Pixbuf.from_stream (new MemoryInputStream.from_data (buffer, null));
-        if (pixbuf == null) {
-            throw new FileError.INVAL ("Failed to create pixbuf from base64 data");
-        }
-        
-        return pixbuf;
     }
 
     private void on_value_changed () {
@@ -272,31 +225,22 @@ public class ImageController : WidgetController {
             var new_width = (int) (scale_val * width);
             var new_height = (int) (scale_val * height);
 
-            Gdk.Pixbuf? scaled_pixbuf = null;
+            // Validate file exists before scaling
+            if (!ErrorHandler.validate_file_path (model.path)) {
+                debug ("Image file not found during scaling: %s", model.path);
+                show_missing_image_placeholder ();
+                return;
+            }
 
-            // Load and scale image from base64 data if available
-            if (model.base64_data != "") {
-                try {
-                    var original_pixbuf = get_pixbuf_from_base64 (model.base64_data);
-                    if (original_pixbuf != null) {
-                        scaled_pixbuf = original_pixbuf.scale_simple (new_width, new_height, Gdk.InterpType.BILINEAR);
-                    }
-                } catch (Error e) {
-                    warning ("Failed to load image from base64 during scaling: %s", e.message);
-                }
-            }
-            // Fallback to file path for backward compatibility
-            else if (model.path != "" && ErrorHandler.validate_file_path (model.path)) {
-                // Use image cache for better performance
-                var cache_manager = ImageCache.ImageCacheManager.get_instance ();
-                scaled_pixbuf = cache_manager.get_image (model.path, new_width, new_height);
-            }
+            // Use image cache for better performance
+            var cache_manager = ImageCache.ImageCacheManager.get_instance ();
+            var scaled_pixbuf = cache_manager.get_image (model.path, new_width, new_height);
             
             if (scaled_pixbuf != null) {
                 movable.image.pixbuf = scaled_pixbuf;
                 model.scale_factor = scale_val;
             } else {
-                warning ("Failed to get scaled image");
+                warning ("Failed to get scaled image from cache");
                 show_missing_image_placeholder ();
             }
         }

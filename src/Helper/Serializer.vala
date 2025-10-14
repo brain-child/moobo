@@ -49,7 +49,7 @@ namespace Serializer {
                     break;
                 case WidgetFactory.WidgetType.IMAGE:
                     var image_model = base_model as ImageModel;
-                    if (image_model.base64_data == "" && image_model.path == "") { continue; }
+                    if (image_model.path == "") { continue; }
                     break;
             }
             var r = Json.gobject_serialize (base_model);
