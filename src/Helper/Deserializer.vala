@@ -217,13 +217,24 @@ namespace Deserializer {
                         path = node.get_string_member ("path");
                     }
                     
+                    string base64_data = "";
+                    if (node.has_member ("base64_data")) {
+                        base64_data = node.get_string_member ("base64_data");
+                    }
+                    
                     double scale_factor = 1.0;
                     if (node.has_member ("scale-factor")) {
                         scale_factor = node.get_double_member ("scale-factor");
                     }
                     
-                    // Validate image file exists
-                    if (path != "" && !ErrorHandler.validate_file_path (path)) {
+                    // Validate image data exists (either base64 or file path)
+                    if (base64_data == "" && path == "") {
+                        debug ("Image widget has no data, skipping");
+                        return null;
+                    }
+                    
+                    // For backward compatibility, validate file path if no base64 data
+                    if (base64_data == "" && path != "" && !ErrorHandler.validate_file_path (path)) {
                         debug ("Image file not found: %s, skipping widget", path);
                         return null;
                     }
@@ -233,6 +244,7 @@ namespace Deserializer {
                         y = y,
                         z_index = z_index,
                         path = path,
+                        base64_data = base64_data,
                         scale_factor = scale_factor
                     };
                     break;
