@@ -66,6 +66,10 @@ public class Application : Gtk.Application {
         add_action (add_label_action);
         set_accels_for_action ("app.add-label", {"<Control>l"});
 
+        var delete_widget_action = new SimpleAction ("delete-widget", null);
+        add_action (delete_widget_action);
+        set_accels_for_action ("app.delete-widget", {"Delete"});
+
         add_window (window);
         window.show_all ();
 
@@ -100,6 +104,10 @@ public class Application : Gtk.Application {
 
         add_label_action.activate.connect (() => {
             window.add_label_widget ();
+        });
+
+        delete_widget_action.activate.connect (() => {
+            window.delete_selected_widget ();
         });
     }
 
@@ -193,6 +201,8 @@ public class Application : Gtk.Application {
         shortcuts.attach (new Gtk.Label ("<Ctrl>T"){ halign = Gtk.Align.START }, 2, 12);
         shortcuts.attach (new Gtk.Label (_("Add label widget:")){ halign = Gtk.Align.END }, 1, 13);
         shortcuts.attach (new Gtk.Label ("<Ctrl>L"){ halign = Gtk.Align.START }, 2, 13);
+        shortcuts.attach (new Gtk.Label (_("Delete selected widget:")){ halign = Gtk.Align.END }, 1, 14);
+        shortcuts.attach (new Gtk.Label ("Delete"){ halign = Gtk.Align.START }, 2, 14);
 
         layout.add (shortcuts);
         shortcut_window.add (layout);

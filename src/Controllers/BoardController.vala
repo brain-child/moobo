@@ -207,6 +207,61 @@ public class BoardController {
         }
     }
 
+    public void delete_selected_widget () {
+        if (selected_widget == null) {
+            return;
+        }
+
+        // Get the widget model to determine the widget type for confirmation
+        BaseModel? widget_model = get_widget_model (selected_widget);
+        if (widget_model == null) {
+            return;
+        }
+
+        // Show confirmation dialog
+        var dialog = new Gtk.MessageDialog (
+            window,
+            Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            Gtk.MessageType.QUESTION,
+            Gtk.ButtonsType.YES_NO,
+            _("Are you sure you want to delete this %s widget?").printf (get_widget_type_name (widget_model.model))
+        );
+
+        dialog.format_secondary_text (_("This action cannot be undone."));
+        dialog.set_transient_for (window);
+        dialog.set_modal (true);
+
+        var response = dialog.run ();
+        dialog.destroy ();
+
+        if (response == Gtk.ResponseType.YES) {
+            // Remove widget from model
+            model.widgets.remove (widget_model);
+
+            // Remove widget from overlay
+            overlay.remove (selected_widget);
+
+            // Clear selection
+            selected_widget = null;
+
+            // Update the board to reflect changes
+            model.changed_trigger ();
+        }
+    }
+
+    private string get_widget_type_name (string model_type) {
+        switch (model_type) {
+            case "TextWidget":
+                return _("text");
+            case "LabelWidget":
+                return _("label");
+            case "ImageWidget":
+                return _("image");
+            default:
+                return _("widget");
+        }
+    }
+
     private BaseModel? get_widget_model (Movable widget) {
         if (widget is TextWidget) {
             var text_widget = widget as TextWidget;

@@ -210,6 +210,13 @@ public class Window : Hdy.ApplicationWindow {
         }
     }
 
+    public void delete_selected_widget () {
+        var active_board = (Board) deck.get_visible_child ();
+        if (active_board != null && active_board.controller.selected_widget != null) {
+            active_board.controller.delete_selected_widget ();
+        }
+    }
+
     public void add_image_widget () {
         var active_board = (Board) deck.get_visible_child ();
         if (active_board != null) {
