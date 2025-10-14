@@ -8,17 +8,22 @@ public class FloatingButtonController {
         this.floating_button = floating_button;
         floating_button.mode_button.mode_changed.connect ( () => {
             var index = floating_button.mode_button.selected;
+            WidgetFactory.WidgetType widget_type;
             switch (index) {
                 case 0:
-                    selection ( typeof (TextWidget) );
+                    widget_type = WidgetFactory.WidgetType.TEXT;
                     break;
                 case 1:
-                    selection ( typeof (LabelWidget) );
+                    widget_type = WidgetFactory.WidgetType.LABEL;
                     break;
                 case 2:
-                    selection ( typeof (ImageWidget) );
+                    widget_type = WidgetFactory.WidgetType.IMAGE;
+                    break;
+                default:
+                    widget_type = WidgetFactory.WidgetType.TEXT;
                     break;
             }
+            selection (WidgetFactory.get_class_type_from_widget_type (widget_type));
         });
     }
 

@@ -5,6 +5,7 @@ sources = files(
 
     'Controllers/BoardController.vala',
     'Controllers/RowController.vala',
+    'Controllers/WidgetController.vala',
     'Controllers/TextController.vala',
     'Controllers/LabelController.vala',
     'Controllers/ImageController.vala',
@@ -12,8 +13,13 @@ sources = files(
 
     'Helper/Colors.vala',
     'Helper/Constants.vala',
+    'Helper/ErrorHandler.vala',
+    'Helper/ImageCache.vala',
+    'Helper/LazyLoader.vala',
+    'Helper/MemoryManager.vala',
     'Helper/Serializer.vala',
     'Helper/Deserializer.vala',
+    'Helper/WidgetFactory.vala',
     'Helper/DemoBoard.vala',
 
     'Models/BoardModel.vala',

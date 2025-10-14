@@ -30,3 +30,12 @@
     color: inherit;
     padding: 0;
 }
+
+.drag-indicator {
+    background: rgba(54, 137, 230, 0.1);
+    border: 2px dashed #3689e6;
+    border-radius: 8px;
+    color: #3689e6;
+    font-weight: bold;
+    font-size: 18px;
+}

@@ -1,12 +1,11 @@
-public class TextController {
+public class TextController : WidgetController {
 
     public TextWidget movable { private set; get; }
     public TextModel model { private set; get; }
-    private BoardController board_controller;
     private Gtk.Overlay overlay;
 
     public TextController (BoardController board_controller, int x, int y, TextModel model = new TextModel ()) {
-        this.board_controller = board_controller;
+        base (board_controller, x, y);
         this.overlay = board_controller.overlay;
         this.movable = new TextWidget (this);
         this.model = model;
@@ -20,6 +19,22 @@ public class TextController {
 
         set_font_size (movable.font_size);
         movable.handle_events (board_controller);
+    }
+
+    public override Movable get_movable () {
+        return movable;
+    }
+
+    public override BaseModel get_model () {
+        return model;
+    }
+
+    public override void handle_key_press (Gdk.EventKey event) {
+        on_key_press (event);
+    }
+
+    public override void handle_key_release () {
+        on_key_release ();
     }
 
     private bool on_key_press (Gdk.EventKey event) {
@@ -41,7 +56,7 @@ public class TextController {
         return false;
     }
 
-    private void update_widget () {
+    public override void update_widget () {
         movable.rel_pos_x = movable.margin_start = model.x;
         movable.rel_pos_y = movable.margin_top = model.y;
         movable.buffer.text = model.content;

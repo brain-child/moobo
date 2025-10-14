@@ -7,6 +7,8 @@ namespace Const {
     public const int WIN_RATIO_Y = 9;
     public const int IMG_MAX_WIDTH = 1200;
     public const int IMG_MAX_HEIGHT= 800;
+    public const int WIN_MIN_WIDTH = 640;
+    public const int WIN_MIN_HEIGHT = 480;
 
     public const double WIN_SCALE_X = 0.75;
     public const double WIN_SCALE_Y = 0.833;

@@ -30,7 +30,7 @@ public class Application : Gtk.Application {
         });
 
         var window = new Window (this) {
-            resizable = false,
+            resizable = true,
         };
         calc_window_size_from_screen_resolution (window);
 
@@ -45,6 +45,30 @@ public class Application : Gtk.Application {
         var help_action = new SimpleAction ("help", null);
         add_action (help_action);
         set_accels_for_action ("app.help", {"Escape"});
+
+        var move_to_foreground_action = new SimpleAction ("move-to-foreground", null);
+        add_action (move_to_foreground_action);
+        set_accels_for_action ("app.move-to-foreground", {"bracketright"});
+
+        var move_to_background_action = new SimpleAction ("move-to-background", null);
+        add_action (move_to_background_action);
+        set_accels_for_action ("app.move-to-background", {"bracketleft"});
+
+        var add_image_action = new SimpleAction ("add-image", null);
+        add_action (add_image_action);
+        set_accels_for_action ("app.add-image", {"<Control>o"});
+
+        var add_text_action = new SimpleAction ("add-text", null);
+        add_action (add_text_action);
+        set_accels_for_action ("app.add-text", {"<Control>t"});
+
+        var add_label_action = new SimpleAction ("add-label", null);
+        add_action (add_label_action);
+        set_accels_for_action ("app.add-label", {"<Control>l"});
+
+        var delete_widget_action = new SimpleAction ("delete-widget", null);
+        add_action (delete_widget_action);
+        set_accels_for_action ("app.delete-widget", {"Delete"});
 
         add_window (window);
         window.show_all ();
@@ -61,6 +85,30 @@ public class Application : Gtk.Application {
         help_action.activate.connect (() => {
             help_window (window).show_all ();
         });
+
+        move_to_foreground_action.activate.connect (() => {
+            window.move_selected_widget_to_foreground ();
+        });
+
+        move_to_background_action.activate.connect (() => {
+            window.move_selected_widget_to_background ();
+        });
+
+        add_image_action.activate.connect (() => {
+            window.add_image_widget ();
+        });
+
+        add_text_action.activate.connect (() => {
+            window.add_text_widget ();
+        });
+
+        add_label_action.activate.connect (() => {
+            window.add_label_widget ();
+        });
+
+        delete_widget_action.activate.connect (() => {
+            window.delete_selected_widget ();
+        });
     }
 
     private void calc_window_size_from_screen_resolution (Window window) {
@@ -71,7 +119,16 @@ public class Application : Gtk.Application {
         var width = (int) (rect.width * Const.WIN_SCALE_X);
         var height = (int) (rect.height * Const.WIN_SCALE_Y);
 
-        window.set_size_request (width, height);
+        // Ensure minimum size
+        width = int.max (width, Const.WIN_MIN_WIDTH);
+        height = int.max (height, Const.WIN_MIN_HEIGHT);
+
+        // Use set_default_size instead of set_size_request to allow resizing
+        window.set_default_size (width, height);
+        window.set_geometry_hints (null, Gdk.Geometry () {
+            min_width = Const.WIN_MIN_WIDTH,
+            min_height = Const.WIN_MIN_HEIGHT
+        }, Gdk.WindowHints.MIN_SIZE);
     }
 
     private Hdy.Window help_window (Hdy.ApplicationWindow main_window) {
@@ -122,18 +179,30 @@ public class Application : Gtk.Application {
 
         shortcuts.attach (new Granite.HeaderLabel (_("Application")), 0, 0, 2);
         shortcuts.attach (new Gtk.Label (_("Show shortcuts:")){ halign = Gtk.Align.END }, 1, 1);
-        shortcuts.attach (new Granite.AccelLabel ("", "Escape"){ halign = Gtk.Align.START },2, 1);
+        shortcuts.attach (new Gtk.Label ("Escape"){ halign = Gtk.Align.START },2, 1);
         shortcuts.attach (new Gtk.Label (_("Save and Quit:")){ halign = Gtk.Align.END }, 1, 2);
-        shortcuts.attach (new Granite.AccelLabel ("", "<Ctrl>W"){ halign = Gtk.Align.START },2, 2);
-        shortcuts.attach (new Granite.AccelLabel ("", "<Ctrl>Q"){ halign = Gtk.Align.START }, 2, 3);
+        shortcuts.attach (new Gtk.Label ("<Ctrl>W"){ halign = Gtk.Align.START },2, 2);
+        shortcuts.attach (new Gtk.Label ("<Ctrl>Q"){ halign = Gtk.Align.START }, 2, 3);
         shortcuts.attach (new Granite.HeaderLabel (_("Boards")), 0, 4, 2);
         shortcuts.attach (new Gtk.Label (_("Rename:")){ halign = Gtk.Align.END }, 1, 5);
-        shortcuts.attach (new Granite.AccelLabel ("", "F2"){ halign = Gtk.Align.START }, 2, 5);
+        shortcuts.attach (new Gtk.Label ("F2"){ halign = Gtk.Align.START }, 2, 5);
         shortcuts.attach (new Granite.HeaderLabel (_("Widgets")), 0, 6, 2);
         shortcuts.attach (new Gtk.Label (_("Increase font size:")){ halign = Gtk.Align.END }, 1, 7);
-        shortcuts.attach (new Granite.AccelLabel ("", "<Ctrl>plus"){ halign = Gtk.Align.START }, 2, 7);
+        shortcuts.attach (new Gtk.Label ("<Ctrl>plus"){ halign = Gtk.Align.START }, 2, 7);
         shortcuts.attach (new Gtk.Label (_("Decrease font size:")){ halign = Gtk.Align.END }, 1, 8);
-        shortcuts.attach (new Granite.AccelLabel ("", "<Ctrl>minus"){ halign = Gtk.Align.START }, 2, 8);
+        shortcuts.attach (new Gtk.Label ("<Ctrl>minus"){ halign = Gtk.Align.START }, 2, 8);
+        shortcuts.attach (new Gtk.Label (_("Move to foreground:")){ halign = Gtk.Align.END }, 1, 9);
+        shortcuts.attach (new Gtk.Label ("]"){ halign = Gtk.Align.START }, 2, 9);
+        shortcuts.attach (new Gtk.Label (_("Move to background:")){ halign = Gtk.Align.END }, 1, 10);
+        shortcuts.attach (new Gtk.Label ("["){ halign = Gtk.Align.START }, 2, 10);
+        shortcuts.attach (new Gtk.Label (_("Add image widget:")){ halign = Gtk.Align.END }, 1, 11);
+        shortcuts.attach (new Gtk.Label ("<Ctrl>O"){ halign = Gtk.Align.START }, 2, 11);
+        shortcuts.attach (new Gtk.Label (_("Add text widget:")){ halign = Gtk.Align.END }, 1, 12);
+        shortcuts.attach (new Gtk.Label ("<Ctrl>T"){ halign = Gtk.Align.START }, 2, 12);
+        shortcuts.attach (new Gtk.Label (_("Add label widget:")){ halign = Gtk.Align.END }, 1, 13);
+        shortcuts.attach (new Gtk.Label ("<Ctrl>L"){ halign = Gtk.Align.START }, 2, 13);
+        shortcuts.attach (new Gtk.Label (_("Delete selected widget:")){ halign = Gtk.Align.END }, 1, 14);
+        shortcuts.attach (new Gtk.Label ("Delete"){ halign = Gtk.Align.START }, 2, 14);
 
         layout.add (shortcuts);
         shortcut_window.add (layout);

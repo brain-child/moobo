@@ -33,22 +33,21 @@ namespace Serializer {
         builder.set_member_name ("widgets");
         builder.begin_array ();
         foreach (var widget in widgets) {
-            BaseModel base_model = null;
-            switch (widget.model) {
-                case "TextWidget":
-                    base_model = widget as TextModel;
+            BaseModel base_model = widget;
+            var widget_type = WidgetFactory.get_widget_type_from_string (widget.model);
+            
+            switch (widget_type) {
+                case WidgetFactory.WidgetType.TEXT:
                     var text_model = base_model as TextModel;
                     text_model.content = text_model.content.strip ();
                     if (text_model.content == "") { continue; }
                     break;
-                case "LabelWidget":
-                    base_model = widget as LabelModel;
+                case WidgetFactory.WidgetType.LABEL:
                     var label_model = base_model as LabelModel;
                     label_model.content = label_model.content.strip ();
                     if (label_model.content == "") { continue; }
                     break;
-                case "ImageWidget":
-                    base_model = widget as ImageModel;
+                case WidgetFactory.WidgetType.IMAGE:
                     var image_model = base_model as ImageModel;
                     if (image_model.path == "") { continue; }
                     break;
@@ -70,10 +69,44 @@ namespace Serializer {
 
         var app_dir = Environment.get_user_data_dir () + Const.APP_PATH;
         var path = "%s/%s.json".printf (app_dir, "boards");
+        
         try {
-            generator.to_file (path);
+            // Ensure directory exists
+            var dir = File.new_for_path (app_dir);
+            if (!dir.query_exists ()) {
+                dir.make_directory_with_parents ();
+            }
+            
+            // Create backup of existing file
+            var file = File.new_for_path (path);
+            if (file.query_exists ()) {
+                var backup_path = "%s.backup".printf (path);
+                var backup_file = File.new_for_path (backup_path);
+                file.copy (backup_file, FileCopyFlags.OVERWRITE);
+            }
+            
+            // Write to temporary file first
+            var temp_path = "%s.tmp".printf (path);
+            var temp_file = File.new_for_path (temp_path);
+            generator.to_file (temp_path);
+            
+            // Move temp file to final location
+            temp_file.move (file, FileCopyFlags.OVERWRITE);
+            
         } catch (Error e) {
-            warning (e.message);
+            warning ("Failed to save boards: %s", e.message);
+            
+            // Try to restore backup if it exists
+            var backup_path = "%s.backup".printf (path);
+            var backup_file = File.new_for_path (backup_path);
+            if (backup_file.query_exists ()) {
+                try {
+                    backup_file.copy (File.new_for_path (path), FileCopyFlags.OVERWRITE);
+                    info ("Restored backup file");
+                } catch (Error restore_error) {
+                    warning ("Failed to restore backup: %s", restore_error.message);
+                }
+            }
         }
     }
 

@@ -5,9 +5,12 @@ public class BoardController {
     public BoardModel model { private set; get; }
     public Gtk.Overlay overlay { private set; get; }
     public Movable selected_widget { set; get; }
+    private int selection_z_index = 10000; // High value for selected widgets
+    private int original_z_index = 0; // Store original z_index of selected widget
     public Window window { private set; get; }
 
     public RowController row_controller;
+    private LazyLoader.LazyLoadingManager? lazy_loader;
 
     public BoardController (Window window, BoardModel model) {
         this.window = window;
@@ -16,6 +19,9 @@ public class BoardController {
         this.overlay = board.overlay;
         this.row_controller = new RowController (this, "Board", model.color);
         row = row_controller.row;
+        
+        // Initialize lazy loading for performance
+        this.lazy_loader = new LazyLoader.LazyLoadingManager (this);
 
         row.focus_in_event.connect (on_focus_in);
         board.enter_notify_event.connect (on_enter_notify);
@@ -30,24 +36,25 @@ public class BoardController {
     public void changed_handler (Gee.ArrayList<BaseModel> widgets, string color, string title) {
         board.title = title;
 
-        foreach (var widget in widgets) {
-            Gtk.Widget w = null;
-            switch (widget.model) {
-                case "TextWidget":
-                    var controller = new TextController (this, widget.x, widget.y, (TextModel) widget);
-                    w = controller.movable;
-                    break;
-                case "LabelWidget":
-                    var controller = new LabelController (this, widget.x, widget.y, (LabelModel) widget);
-                    w = controller.movable;
-                    break;
-                case "ImageWidget":
-                    var controller = new ImageController (this, widget.x, widget.y, (ImageModel) widget);
-                    w = controller.movable;
-                    break;
-            }
-            overlay.add_overlay (w);
+        // Clear existing lazy widgets
+        if (lazy_loader != null) {
+            lazy_loader.unload_all_widgets ();
         }
+
+        // Add widgets using lazy loading for better performance
+        foreach (var widget in widgets) {
+            if (lazy_loader != null) {
+                lazy_loader.add_widget (widget, widget.x, widget.y);
+            } else {
+                // Fallback to immediate loading if lazy loading is disabled
+                var w = WidgetFactory.create_widget_from_string (widget.model, this, widget.x, widget.y, widget);
+                overlay.add_overlay (w);
+            }
+        }
+        
+        // Apply proper layering based on z_index
+        update_widget_layering ();
+        
         row.display_name_label.label = title;
         set_color (color);
     }
@@ -67,47 +74,36 @@ public class BoardController {
     private bool on_button_press (Gdk.EventButton event) {
         board.grab_focus ();
         board.revealer.reveal_child = false;
+        
+        // Deselect any previously selected widget
+        deselect_widget ();
 
         if (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS) {
             var selection = window.fab_selection;
 
             var x = (int) event.x;
             var y = (int) event.y;
-            Movable widget = null;
-
-            switch (selection.name ()) {
-                case "TextWidget":
-                    var controller = new TextController (this, x, y);
-                    model.widgets.add (controller.model);
-                    widget = controller.movable;
-                    break;
-                case "LabelWidget":
-                    var controller = new LabelController (this, x, y);
-                    model.widgets.add (controller.model);
-                    widget = controller.movable;
-                    break;
-                case "ImageWidget":
-                    var controller = new ImageController (this, x, y);
-                    model.widgets.add (controller.model);
-                    widget = controller.movable;
-                    break;
-            }
+            
+            var widget = WidgetFactory.create_widget_from_class (selection, this, x, y);
+            WidgetFactory.add_widget_to_model (widget, model.widgets);
 
             widget.rel_pos_x = widget.margin_start = x;
             widget.rel_pos_y = widget.margin_top = y;
 
-            overlay.add_overlay (widget);
-
-            switch (selection.name ()) {
-                case "TextWidget":
-                    var text_widget = widget as TextWidget;
-                    text_widget.textview.grab_focus ();
-                    break;
-                case "LabelWidget":
-                    var label_widget = widget as LabelWidget;
-                    label_widget.textview.grab_focus ();
-                    break;
+            // Set z_index for new widget to be on top
+            BaseModel widget_model = get_widget_model (widget);
+            if (widget_model != null) {
+                int max_z_index = 0;
+                foreach (var model_widget in model.widgets) {
+                    if (model_widget.z_index > max_z_index) {
+                        max_z_index = model_widget.z_index;
+                    }
+                }
+                widget_model.z_index = max_z_index + 1;
             }
+
+            overlay.add_overlay (widget);
+            WidgetFactory.focus_widget (widget);
         }
         
         return true;
@@ -117,6 +113,15 @@ public class BoardController {
         window.board_header.title = board.title;
         if (window.deck.get_visible_child () != board) {
             window.deck.set_visible_child (board);
+        }
+        
+        // Update viewport for lazy loading when board becomes active
+        if (lazy_loader != null) {
+            int width, height;
+            board.get_size_request (out width, out height);
+            if (width <= 0) width = 800;
+            if (height <= 0) height = 600;
+            lazy_loader.update_viewport (0, 0, width, height);
         }
     }
 
@@ -154,6 +159,177 @@ public class BoardController {
         }
         unowned Gtk.StyleContext style_context = row.source_color.get_style_context ();
         style_context.add_provider (style_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+    }
+
+    public void move_widget_to_foreground (Movable widget) {
+        // Find the highest z_index among all widgets (excluding selection z_index)
+        int max_z_index = 0;
+        foreach (var model in model.widgets) {
+            if (model.z_index > max_z_index && model.z_index < selection_z_index) {
+                max_z_index = model.z_index;
+            }
+        }
+        
+        // Set the widget's z_index to be higher than all others
+        BaseModel widget_model = get_widget_model (widget);
+        if (widget_model != null) {
+            widget_model.z_index = max_z_index + 1;
+            
+            // If this widget is currently selected, update the original_z_index too
+            if (selected_widget == widget) {
+                original_z_index = widget_model.z_index;
+            }
+            
+            update_widget_layering ();
+        }
+    }
+
+    public void move_widget_to_background (Movable widget) {
+        // Find the lowest z_index among all widgets (excluding selection z_index)
+        int min_z_index = 0;
+        foreach (var model in model.widgets) {
+            if (model.z_index < min_z_index && model.z_index < selection_z_index) {
+                min_z_index = model.z_index;
+            }
+        }
+        
+        // Set the widget's z_index to be lower than all others
+        BaseModel widget_model = get_widget_model (widget);
+        if (widget_model != null) {
+            widget_model.z_index = min_z_index - 1;
+            
+            // If this widget is currently selected, update the original_z_index too
+            if (selected_widget == widget) {
+                original_z_index = widget_model.z_index;
+            }
+            
+            update_widget_layering ();
+        }
+    }
+
+    public void delete_selected_widget () {
+        if (selected_widget == null) {
+            return;
+        }
+
+        // Get the widget model to determine the widget type for confirmation
+        BaseModel? widget_model = get_widget_model (selected_widget);
+        if (widget_model == null) {
+            return;
+        }
+
+        // Show confirmation dialog
+        var dialog = new Gtk.MessageDialog (
+            window,
+            Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            Gtk.MessageType.QUESTION,
+            Gtk.ButtonsType.YES_NO,
+            _("Are you sure you want to delete this %s widget?").printf (get_widget_type_name (widget_model.model))
+        );
+
+        dialog.format_secondary_text (_("This action cannot be undone."));
+        dialog.set_transient_for (window);
+        dialog.set_modal (true);
+
+        var response = dialog.run ();
+        dialog.destroy ();
+
+        if (response == Gtk.ResponseType.YES) {
+            // Remove widget from model
+            model.widgets.remove (widget_model);
+
+            // Remove widget from overlay
+            overlay.remove (selected_widget);
+
+            // Clear selection
+            selected_widget = null;
+
+            // Update the board to reflect changes
+            model.changed_trigger ();
+        }
+    }
+
+    private string get_widget_type_name (string model_type) {
+        switch (model_type) {
+            case "TextWidget":
+                return _("text");
+            case "LabelWidget":
+                return _("label");
+            case "ImageWidget":
+                return _("image");
+            default:
+                return _("widget");
+        }
+    }
+
+    private BaseModel? get_widget_model (Movable widget) {
+        if (widget is TextWidget) {
+            var text_widget = widget as TextWidget;
+            return text_widget.controller.model;
+        } else if (widget is LabelWidget) {
+            var label_widget = widget as LabelWidget;
+            return label_widget.controller.model;
+        } else if (widget is ImageWidget) {
+            var image_widget = widget as ImageWidget;
+            return image_widget.controller.model;
+        }
+        return null;
+    }
+
+    public void select_widget (Movable widget) {
+        // Deselect previous widget if any
+        if (selected_widget != null && selected_widget != widget) {
+            deselect_widget ();
+        }
+        
+        // Select new widget
+        selected_widget = widget;
+        
+        // Store original z_index and temporarily bring to foreground
+        BaseModel widget_model = get_widget_model (widget);
+        if (widget_model != null) {
+            original_z_index = widget_model.z_index;
+            widget_model.z_index = selection_z_index;
+            update_widget_layering ();
+        }
+    }
+    
+    public void deselect_widget () {
+        if (selected_widget != null) {
+            // Restore original z_index for deselected widget
+            BaseModel widget_model = get_widget_model (selected_widget);
+            if (widget_model != null) {
+                widget_model.z_index = original_z_index;
+                update_widget_layering ();
+            }
+            selected_widget = null;
+        }
+    }
+
+    private void update_widget_layering () {
+        // Sort widgets by z_index and reorder them in the overlay
+        var sorted_widgets = new Gee.ArrayList<Movable> ();
+        
+        // Get all movable widgets from the overlay
+        var children = overlay.get_children ();
+        foreach (var child in children) {
+            if (child is Movable) {
+                sorted_widgets.add ((Movable) child);
+            }
+        }
+        
+        // Sort by z_index (ascending order - lower z_index first)
+        sorted_widgets.sort ((a, b) => {
+            BaseModel? model_a = get_widget_model (a);
+            BaseModel? model_b = get_widget_model (b);
+            if (model_a == null || model_b == null) return 0;
+            return model_a.z_index - model_b.z_index;
+        });
+        
+        // Reorder widgets in the overlay
+        foreach (var widget in sorted_widgets) {
+            overlay.reorder_overlay (widget, -1);
+        }
     }
 
 }
